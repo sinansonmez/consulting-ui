@@ -1,6 +1,6 @@
 {
   "name": "consulting-ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Strategy consulting React 19 + TypeScript UI component library inspired by McKinsey, BCG, and Bain flagship digital reports and analytical interfaces.",
   "type": "module",
   "author": "Sinan Sonmez",
