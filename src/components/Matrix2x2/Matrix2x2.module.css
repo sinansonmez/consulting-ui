@@ -1,0 +1,215 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+  font-family: var(--mbb-font-sans);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.8rem 1fr;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+.yAxis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yAxisText {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--mbb-text-muted);
+  white-space: nowrap;
+}
+
+.plane {
+  position: relative;
+  width: 100%;
+  min-height: 20rem;
+  border-radius: var(--mbb-radius-card);
+}
+
+.quadrants {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.quadCell {
+  padding: 0.75rem 0.9rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.quadCell:nth-child(2),
+.quadCell:nth-child(4) {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.quadCell:nth-child(3),
+.quadCell:nth-child(4) {
+  align-items: flex-end;
+}
+
+/* Style variants */
+.style_quadrant .plane {
+  border: 1.5px solid var(--mbb-border-strong);
+  background-color: var(--mbb-bg-canvas);
+  overflow: hidden;
+}
+
+.style_quadrant .quadCell:nth-child(1) {
+  border-right: 1px dashed var(--mbb-border-strong);
+  border-bottom: 1px dashed var(--mbb-border-strong);
+}
+
+.style_quadrant .quadCell:nth-child(2) {
+  border-bottom: 1px dashed var(--mbb-border-strong);
+}
+
+.style_quadrant .quadCell:nth-child(3) {
+  border-right: 1px dashed var(--mbb-border-strong);
+}
+
+.style_quadrant .leaderQuad {
+  background-color: var(--mbb-accent-soft);
+}
+
+.style_minimal .quadCell:nth-child(1) {
+  border-right: 1.5px solid var(--mbb-border-strong);
+  border-bottom: 1.5px solid var(--mbb-border-strong);
+}
+
+.style_minimal .quadCell:nth-child(2) {
+  border-bottom: 1.5px solid var(--mbb-border-strong);
+}
+
+.style_minimal .quadCell:nth-child(3) {
+  border-right: 1.5px solid var(--mbb-border-strong);
+}
+
+.style_card .quadrants {
+  gap: 0.65rem;
+}
+
+.style_card .quadCell {
+  background-color: var(--mbb-bg-surface);
+  border: 1px solid var(--mbb-border);
+  border-radius: var(--mbb-radius-card);
+}
+
+.style_card .leaderQuad {
+  border-color: var(--mbb-accent);
+  background-color: var(--mbb-accent-soft);
+}
+
+.quadTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--mbb-text-secondary);
+}
+
+.leaderQuad .quadTitle {
+  color: var(--mbb-accent);
+}
+
+.pointsLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.point {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: none;
+  padding: 0.2rem;
+  cursor: pointer;
+  font-family: inherit;
+  z-index: 2;
+}
+
+.point:focus-visible {
+  outline: 2px solid var(--mbb-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--mbb-radius-badge);
+}
+
+.dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: var(--mbb-accent-strong);
+  border: 2px solid var(--mbb-bg-canvas);
+  border-radius: var(--mbb-radius-badge);
+  flex-shrink: 0;
+  transition: transform var(--mbb-transition-fast), background-color var(--mbb-transition-fast);
+}
+
+[data-brand='mckinsey'] .dot {
+  transform: rotate(45deg);
+}
+
+.pointHighlighted .dot,
+.pointSelected .dot {
+  background-color: var(--mbb-accent);
+  transform: scale(1.25);
+}
+
+[data-brand='mckinsey'] .pointHighlighted .dot,
+[data-brand='mckinsey'] .pointSelected .dot {
+  transform: rotate(45deg) scale(1.2);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  padding: 0.22rem 0.5rem;
+  background-color: var(--mbb-bg-canvas);
+  border: 1px solid var(--mbb-border);
+  border-radius: var(--mbb-radius-badge);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+}
+
+.pointSelected .tag {
+  border-color: var(--mbb-accent);
+  background-color: var(--mbb-accent-soft);
+}
+
+.tagLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--mbb-text-primary);
+}
+
+.tagMeta {
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--mbb-accent);
+}
+
+.xAxis {
+  padding-left: 2.3rem;
+  text-align: right;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--mbb-text-muted);
+}

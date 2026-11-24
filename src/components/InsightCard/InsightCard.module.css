@@ -1,0 +1,145 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-family: var(--mbb-font-sans);
+  color: var(--mbb-text-primary);
+  border-radius: var(--mbb-radius-card);
+  transition: border-color var(--mbb-transition-fast), transform var(--mbb-transition-fast);
+}
+
+.topRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.eyebrow {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  color: var(--mbb-accent);
+}
+
+.meta {
+  font-size: 0.75rem;
+  color: var(--mbb-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--mbb-font-display);
+  font-size: 1.2rem;
+  font-weight: var(--mbb-display-weight);
+  letter-spacing: var(--mbb-display-tracking);
+  line-height: 1.28;
+  color: inherit;
+}
+
+.summary {
+  margin: 0;
+  font-size: 0.885rem;
+  line-height: 1.55;
+  color: var(--mbb-text-secondary);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 0.6rem;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--mbb-accent);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--mbb-focus-ring);
+  outline-offset: 2px;
+}
+
+.ctaArrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--mbb-transition-fast);
+}
+
+[data-brand='bcg'] .cta {
+  color: inherit;
+  gap: 0.6rem;
+}
+
+[data-brand='bcg'] .ctaArrow {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background-color: var(--mbb-accent);
+  color: var(--mbb-text-on-accent);
+}
+
+.cta:hover .ctaArrow {
+  transform: translateX(3px);
+}
+
+.cta:hover .ctaText {
+  text-decoration: underline;
+}
+
+/* Styles */
+.style_editorial {
+  padding: 1.15rem 0 0;
+  border-top: var(--mbb-rule-heavy) solid var(--mbb-border-strong);
+  border-radius: 0;
+}
+
+.style_editorial[data-brand='bain'] {
+  border-top-color: var(--mbb-accent);
+}
+
+.style_bordered {
+  padding: 1.3rem 1.4rem;
+  background-color: var(--mbb-bg-canvas);
+  border: 1px solid var(--mbb-border);
+}
+
+.style_bordered:hover {
+  border-color: var(--mbb-accent);
+}
+
+.style_featured {
+  padding: 1.4rem 1.5rem;
+  background-color: var(--mbb-bg-inverse);
+  color: var(--mbb-text-inverse);
+  border: 1px solid transparent;
+}
+
+.style_featured .summary,
+.style_featured .meta {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.style_featured .eyebrow,
+.style_featured .cta {
+  color: inherit;
+}

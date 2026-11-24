@@ -1,0 +1,27 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--mbb-font-sans);
+  font-variant-numeric: tabular-nums;
+  vertical-align: middle;
+}
+
+.style_solid,
+.style_ring {
+  color: var(--mbb-accent);
+}
+
+.style_solid[data-brand='mckinsey'][data-value='100'] {
+  color: var(--mbb-accent-strong);
+}
+
+.style_minimal {
+  color: var(--mbb-text-primary);
+}
+
+.valueText {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--mbb-text-secondary);
+}

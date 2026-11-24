@@ -8,13 +8,16 @@ import {
   TabsStyle,
 } from '../index';
 import { ReportView } from './components/ReportView';
+import { SimulatorView } from './components/SimulatorView';
 import { TriBrandLab } from './components/TriBrandLab';
 import styles from './App.module.css';
+
+type ShowcaseView = 'report' | 'simulator' | 'lab';
 
 export function App() {
   const [brand, setBrand] = useState<Brand>(Brand.McKinsey);
   const [surface, setSurface] = useState<Surface>(Surface.Light);
-  const [view, setView] = useState<'report' | 'lab'>('report');
+  const [view, setView] = useState<ShowcaseView>('report');
 
   return (
     <BrandProvider brand={brand} surface={surface}>
@@ -78,10 +81,11 @@ export function App() {
               size={ControlSize.Sm}
               ariaLabel="Showcase mode"
               value={view}
-              onChange={(next) => setView(next as 'report' | 'lab')}
+              onChange={(next) => setView(next as ShowcaseView)}
               items={[
                 { id: 'report', label: 'Interactive 2026 Strategy Report' },
-                { id: 'lab', label: 'Tri-Brand Side-by-Side Lab', count: 10 },
+                { id: 'simulator', label: 'Diagnostic & Frameworks Simulator' },
+                { id: 'lab', label: 'Tri-Brand Side-by-Side Lab', count: 20 },
               ]}
             />
           </div>
@@ -89,7 +93,12 @@ export function App() {
 
         <main className={styles.main}>
           {view === 'report' ? (
-            <ReportView onOpenLab={() => setView('lab')} />
+            <ReportView
+              onOpenLab={() => setView('lab')}
+              onOpenSimulator={() => setView('simulator')}
+            />
+          ) : view === 'simulator' ? (
+            <SimulatorView onOpenLab={() => setView('lab')} />
           ) : (
             <TriBrandLab />
           )}
@@ -98,7 +107,7 @@ export function App() {
         <footer className={styles.footer}>
           <div className={styles.footerInner}>
             <p className={styles.disclaimer}>
-              <strong>consulting-ui</strong> is an independent, open-source React 19 + TypeScript design-system POC. It is not affiliated with, sponsored by, or endorsed by McKinsey &amp; Company, Boston Consulting Group, or Bain &amp; Company. All metrics shown are illustrative benchmark datasets.
+              <strong>consulting-ui</strong> is an independent, open-source React 19 + TypeScript design-system library (20 components). It is not affiliated with, sponsored by, or endorsed by McKinsey &amp; Company, Boston Consulting Group, or Bain &amp; Company. All metrics shown are illustrative benchmark datasets.
             </p>
             <div className={styles.footerLinks}>
               <a

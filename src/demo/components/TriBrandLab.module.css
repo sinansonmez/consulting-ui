@@ -15,6 +15,14 @@
   border-bottom: 1px solid var(--mbb-border);
 }
 
+.headerRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .labTitle {
   margin: 0;
   font-family: var(--mbb-font-display);
@@ -110,6 +118,11 @@
 
 .stack > * {
   max-width: 100%;
+  width: 100%;
+}
+
+.stack > button {
+  width: auto;
 }
 
 .inlineRow,

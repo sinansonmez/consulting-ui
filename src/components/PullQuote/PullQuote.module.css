@@ -1,0 +1,112 @@
+.root {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-family: var(--mbb-font-sans);
+  color: var(--mbb-text-primary);
+}
+
+.mark {
+  font-family: var(--mbb-font-quote);
+  font-size: 3rem;
+  line-height: 0.7;
+  color: var(--mbb-accent);
+  user-select: none;
+}
+
+.blockquote {
+  margin: 0;
+  font-family: var(--mbb-font-quote);
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  font-weight: 500;
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+  color: inherit;
+}
+
+.attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: 0.25rem;
+}
+
+.author {
+  font-size: 0.885rem;
+  font-weight: 700;
+  color: inherit;
+}
+
+.role {
+  font-size: 0.8rem;
+  color: var(--mbb-text-muted);
+}
+
+/* ============================================================================
+   EDITORIAL — Distinct quote architecture per firm
+   ============================================================================ */
+.style_editorial {
+  padding: 1.35rem 1.5rem;
+}
+
+.style_editorial[data-brand='mckinsey'] {
+  padding-inline: 0;
+  border-top: 2.5px solid var(--mbb-accent);
+  border-bottom: 1px solid var(--mbb-border);
+}
+
+.style_editorial[data-brand='bcg'] {
+  background-color: #0e3b2c;
+  color: #f3faf6;
+  border-radius: var(--mbb-radius-card);
+  border: 1px solid #147b58;
+}
+
+.style_editorial[data-brand='bcg'] .mark {
+  color: #29ba74;
+}
+
+.style_editorial[data-brand='bcg'] .role {
+  color: #9cc2b0;
+}
+
+.style_editorial[data-brand='bain'] {
+  background-color: var(--mbb-bg-surface);
+  border-left: 4px solid var(--mbb-accent);
+  border-radius: var(--mbb-radius-card);
+}
+
+/* ============================================================================
+   CENTERED
+   ============================================================================ */
+.style_centered {
+  text-align: center;
+  align-items: center;
+  padding: 1.75rem 1.5rem;
+  border-top: 1px solid var(--mbb-border);
+  border-bottom: 1px solid var(--mbb-border);
+}
+
+.style_centered .blockquote {
+  max-width: 44rem;
+}
+
+/* ============================================================================
+   COMPACT
+   ============================================================================ */
+.style_compact {
+  padding: 1rem 1.15rem;
+  background-color: var(--mbb-bg-surface);
+  border-left: 3px solid var(--mbb-accent);
+  border-radius: var(--mbb-radius-card);
+  gap: 0.5rem;
+}
+
+.style_compact .mark {
+  display: none;
+}
+
+.style_compact .blockquote {
+  font-size: 1.02rem;
+}

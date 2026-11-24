@@ -1,0 +1,135 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+  font-family: var(--mbb-font-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--mbb-text-primary);
+}
+
+.valueReadout {
+  font-family: var(--mbb-font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--mbb-accent);
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: 0.8rem;
+  background-color: var(--mbb-bg-surface);
+  border: 1px solid var(--mbb-border);
+  border-radius: var(--mbb-radius-badge);
+  overflow: visible;
+}
+
+.style_minimal .track {
+  height: 0.45rem;
+}
+
+.quartileZone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: var(--mbb-accent-soft);
+  border-top-right-radius: var(--mbb-radius-badge);
+  border-bottom-right-radius: var(--mbb-radius-badge);
+}
+
+.fillPrimary {
+  position: relative;
+  height: 100%;
+  background-color: var(--mbb-accent);
+  border-radius: var(--mbb-radius-badge);
+  transition: width var(--mbb-transition-med);
+}
+
+.fillLeader {
+  height: 100%;
+  background-color: var(--mbb-border-strong);
+  opacity: 0.55;
+  border-radius: var(--mbb-radius-badge);
+  transition: width var(--mbb-transition-med);
+}
+
+.medianTick {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 2px;
+  background-color: var(--mbb-text-primary);
+  transform: translateX(-1px);
+}
+
+.topTick {
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  background-color: var(--mbb-bg-canvas);
+  border: 2px solid var(--mbb-accent-strong);
+  border-radius: var(--mbb-radius-badge);
+  transform: translate(-50%, -50%);
+}
+
+.splitTracks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.trackRow {
+  display: grid;
+  grid-template-columns: 4.2rem 1fr;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.trackTag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--mbb-text-muted);
+}
+
+.benchmarks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--mbb-text-muted);
+}
+
+.markerNote {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.medianSwatch {
+  display: inline-block;
+  width: 2px;
+  height: 10px;
+  background-color: var(--mbb-text-primary);
+}
+
+.topSwatch {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--mbb-accent-strong);
+  border-radius: var(--mbb-radius-badge);
+}

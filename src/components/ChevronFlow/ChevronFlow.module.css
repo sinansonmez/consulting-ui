@@ -1,0 +1,148 @@
+.root {
+  width: 100%;
+  font-family: var(--mbb-font-sans);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.headerBanner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.85rem 1.35rem 0.85rem 1.25rem;
+  background-color: var(--mbb-bg-surface);
+  color: var(--mbb-text-primary);
+  border: 1px solid var(--mbb-border);
+}
+
+.phase {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--mbb-accent);
+}
+
+.title {
+  font-family: var(--mbb-font-display);
+  font-size: 1rem;
+  font-weight: var(--mbb-display-weight);
+  line-height: 1.25;
+}
+
+.stepActive .headerBanner {
+  background-color: var(--mbb-accent);
+  border-color: var(--mbb-accent);
+  color: var(--mbb-text-on-accent);
+}
+
+.stepActive .phase {
+  color: inherit;
+  opacity: 0.88;
+}
+
+/* Interlocking consulting chevrons */
+.style_interlocking .headerBanner {
+  border: none;
+  padding-inline: 1.6rem 1.5rem;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 10px 50%);
+  background-color: var(--mbb-bg-subtle);
+}
+
+.style_interlocking .step:first-child .headerBanner {
+  padding-left: 1.15rem;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+}
+
+.style_interlocking .stepActive .headerBanner {
+  background-color: var(--mbb-accent);
+}
+
+/* BCG Interlocking uses modern rounded capsule banners */
+.style_interlocking[data-brand='bcg'] .headerBanner,
+.style_interlocking[data-brand='bcg'] .step:first-child .headerBanner {
+  clip-path: none;
+  border-radius: 9999px;
+  padding-inline: 1.35rem;
+}
+
+/* Cards style */
+.style_cards .step {
+  background-color: var(--mbb-bg-surface);
+  border: 1px solid var(--mbb-border);
+  border-radius: var(--mbb-radius-card);
+  padding: 1.1rem;
+}
+
+.style_cards .stepActive {
+  border-color: var(--mbb-accent);
+}
+
+.style_cards .headerBanner {
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--mbb-text-primary);
+}
+
+.style_cards .stepActive .phase {
+  color: var(--mbb-accent);
+}
+
+/* Minimal top-rule timeline */
+.style_minimal .headerBanner {
+  padding: 0.75rem 0 0;
+  background: transparent;
+  border: none;
+  border-top: var(--mbb-rule-heavy) solid var(--mbb-border-strong);
+  color: var(--mbb-text-primary);
+}
+
+.style_minimal .stepActive .headerBanner {
+  border-top-color: var(--mbb-accent);
+}
+
+.style_minimal .stepActive .phase {
+  color: var(--mbb-accent);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-inline: 0.25rem;
+}
+
+.style_cards .body {
+  padding-inline: 0;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.825rem;
+  line-height: 1.45;
+  color: var(--mbb-text-secondary);
+}
+
+.items {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--mbb-text-secondary);
+}

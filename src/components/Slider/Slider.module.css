@@ -1,0 +1,144 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+  font-family: var(--mbb-font-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.label {
+  font-size: 0.835rem;
+  font-weight: 600;
+  color: var(--mbb-text-primary);
+}
+
+.readout {
+  font-family: var(--mbb-font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--mbb-accent);
+}
+
+.trackArea {
+  position: relative;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0.42rem;
+  background-color: var(--mbb-bg-surface);
+  border: 1px solid var(--mbb-border);
+  border-radius: var(--mbb-radius-badge);
+}
+
+.style_minimal .rail {
+  height: 0.22rem;
+  border: none;
+  background-color: var(--mbb-border);
+}
+
+.fill {
+  height: 100%;
+  background-color: var(--mbb-accent);
+  border-radius: var(--mbb-radius-badge);
+}
+
+.tick {
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: 8px;
+  background-color: var(--mbb-border-strong);
+  opacity: 0.4;
+  transform: translate(-50%, -50%);
+}
+
+.benchTick {
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  width: 2px;
+  background-color: var(--mbb-text-primary);
+  transform: translateX(-1px);
+}
+
+.rangeInput {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.rangeInput:disabled {
+  cursor: not-allowed;
+}
+
+.rangeInput:focus-visible {
+  outline: none;
+}
+
+.rangeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  background-color: var(--mbb-accent);
+  border: 2px solid var(--mbb-bg-canvas);
+  border-radius: var(--mbb-radius-control);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+  transition: transform var(--mbb-transition-fast), background-color var(--mbb-transition-fast);
+}
+
+.rangeInput:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--mbb-focus-ring);
+  outline-offset: 2px;
+}
+
+.rangeInput:hover:not(:disabled)::-webkit-slider-thumb {
+  background-color: var(--mbb-accent-hover);
+  transform: scale(1.1);
+}
+
+.rangeInput::-moz-range-thumb {
+  width: 1.05rem;
+  height: 1.05rem;
+  background-color: var(--mbb-accent);
+  border: 2px solid var(--mbb-bg-canvas);
+  border-radius: var(--mbb-radius-control);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.73rem;
+  color: var(--mbb-text-muted);
+}
+
+.benchNote {
+  font-weight: 600;
+  color: var(--mbb-text-secondary);
+}

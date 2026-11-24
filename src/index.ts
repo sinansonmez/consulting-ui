@@ -14,6 +14,16 @@ export {
   ExhibitStyle,
   DataTableStyle,
   AccordionStyle,
+  HarveyBallStyle,
+  WaterfallStyle,
+  MatrixStyle,
+  ChevronFlowStyle,
+  BenchmarkBarStyle,
+  PullQuoteStyle,
+  InsightCardStyle,
+  SliderStyle,
+  SegmentedControlStyle,
+  DrawerStyle,
 } from './theme/enums';
 
 export {
@@ -53,3 +63,44 @@ export {
   type AccordionItem,
   type AccordionProps,
 } from './components/Accordion/Accordion';
+export {
+  HarveyBall,
+  type HarveyBallProps,
+  type HarveyBallValue,
+} from './components/HarveyBall/HarveyBall';
+export {
+  BenchmarkBar,
+  type BenchmarkBarProps,
+} from './components/BenchmarkBar/BenchmarkBar';
+export {
+  WaterfallChart,
+  type WaterfallChartProps,
+  type WaterfallStep,
+  type WaterfallStepKind,
+} from './components/WaterfallChart/WaterfallChart';
+export {
+  Matrix2x2,
+  type Matrix2x2Props,
+  type MatrixItem,
+  type MatrixQuadrantLabels,
+} from './components/Matrix2x2/Matrix2x2';
+export {
+  ChevronFlow,
+  type ChevronFlowProps,
+  type ChevronStep,
+} from './components/ChevronFlow/ChevronFlow';
+export {
+  PullQuote,
+  type PullQuoteProps,
+} from './components/PullQuote/PullQuote';
+export {
+  InsightCard,
+  type InsightCardProps,
+} from './components/InsightCard/InsightCard';
+export { Slider, type SliderProps } from './components/Slider/Slider';
+export {
+  SegmentedControl,
+  type SegmentedControlProps,
+  type SegmentedOption,
+} from './components/SegmentedControl/SegmentedControl';
+export { Drawer, type DrawerProps } from './components/Drawer/Drawer';

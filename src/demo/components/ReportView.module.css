@@ -67,6 +67,12 @@
   gap: 1.25rem;
 }
 
+.insightGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
 .takeawayList {
   margin: 0;
   padding-left: 1.2rem;
@@ -124,7 +130,8 @@
 }
 
 @media (max-width: 880px) {
-  .kpiGrid {
+  .kpiGrid,
+  .insightGrid {
     grid-template-columns: 1fr;
   }
 }

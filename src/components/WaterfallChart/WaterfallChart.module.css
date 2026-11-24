@@ -1,0 +1,14 @@
+.root {
+  width: 100%;
+  overflow-x: auto;
+  font-family: var(--mbb-font-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  min-width: 30rem;
+  display: block;
+  font-family: var(--mbb-font-sans);
+}

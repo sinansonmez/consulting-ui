@@ -11,18 +11,29 @@ import {
   ControlSize,
   DataTable,
   DataTableStyle,
+  Drawer,
+  DrawerStyle,
   ExhibitFrame,
   ExhibitStyle,
+  HarveyBall,
+  HarveyBallStyle,
   Input,
   InputStyle,
+  InsightCard,
+  InsightCardStyle,
   MetricCard,
   MetricCardStyle,
+  PullQuote,
+  PullQuoteStyle,
   Select,
   SelectStyle,
   Tabs,
   TabsStyle,
+  WaterfallChart,
+  WaterfallStyle,
   useBrand,
   type DataTableColumn,
+  type HarveyBallValue,
 } from '../../index';
 import {
   BRAND_BRIEFS,
@@ -36,16 +47,52 @@ import styles from './ReportView.module.css';
 
 export interface ReportViewProps {
   onOpenLab: () => void;
+  onOpenSimulator: () => void;
 }
 
-export function ReportView({ onOpenLab }: ReportViewProps) {
+function toHarveyValue(score: number): HarveyBallValue {
+  if (score >= 84) return 100;
+  if (score >= 73) return 75;
+  if (score >= 64) return 50;
+  if (score >= 45) return 25;
+  return 0;
+}
+
+const RELATED_BRIEFS = [
+  {
+    id: 'ai-operating-model',
+    eyebrow: 'Operating Model',
+    meta: 'PDF Brief · 14 min read',
+    title: 'Rewiring Decision Rights for Agentic Scale',
+    summary:
+      'Why top-quartile leadership teams flatten middle-management approval gates before scaling enterprise AI.',
+  },
+  {
+    id: 'capital-allocation',
+    eyebrow: 'Corporate Finance',
+    meta: 'Interactive Report · 11 min read',
+    title: 'Dynamic Capital Allocation in a Higher-Rate Cycle',
+    summary:
+      'Empirical evidence across 1,200 corporates showing quarterly reallocation outperforms static annual budgets by 190 bps.',
+  },
+  {
+    id: 'commercial-excellence',
+    eyebrow: 'Commercial & Pricing',
+    meta: 'Executive Deck · 9 min read',
+    title: 'Precision Pricing Architecture & Margin Defense',
+    summary:
+      'Capturing 250–400 bps of pocket-margin expansion through automated deal-desk guardrails.',
+  },
+] as const;
+
+export function ReportView({ onOpenLab, onOpenSimulator }: ReportViewProps) {
   const { brand } = useBrand();
   const brief = BRAND_BRIEFS[brand];
 
   const [region, setRegion] = useState<RegionKey>('global');
   const [exhibitTab, setExhibitTab] = useState<string>('chart');
   const [sectorQuery, setSectorQuery] = useState<string>('');
-  const [downloadNote, setDownloadNote] = useState<string | null>(null);
+  const [activeBriefId, setActiveBriefId] = useState<string | null>(null);
 
   const metrics = brief.metricsByRegion[region];
   const bars = brief.barsByRegion[region];
@@ -78,6 +125,9 @@ export function ReportView({ onOpenLab }: ReportViewProps) {
     );
   }, [filteredRows]);
 
+  const activeBrief =
+    RELATED_BRIEFS.find((b) => b.id === activeBriefId) ?? null;
+
   const columns: readonly DataTableColumn<SectorMetricRow>[] = [
     { key: 'sector', header: 'Industry Sector', sortable: true },
     {
@@ -95,9 +145,18 @@ export function ReportView({ onOpenLab }: ReportViewProps) {
     },
     {
       key: 'readinessScore',
-      header: 'Readiness Index',
+      header: 'Maturity',
       align: 'right',
       sortable: true,
+      render: (val) => (
+        <HarveyBall
+          value={toHarveyValue(Number(val))}
+          style={HarveyBallStyle.Solid}
+          size={ControlSize.Sm}
+          label="Sector maturity"
+          showValue
+        />
+      ),
     },
     {
       key: 'medianPayback',
@@ -134,40 +193,30 @@ export function ReportView({ onOpenLab }: ReportViewProps) {
         <div className={styles.tagRow}>
           <Badge style={BadgeStyle.Accent}>{brief.practiceTag}</Badge>
           <Badge style={BadgeStyle.Outline}>{brief.releaseTag}</Badge>
-          <Badge style={BadgeStyle.Positive}>2026 Benchmark</Badge>
+          <Badge style={BadgeStyle.Positive}>20 Components</Badge>
         </div>
 
         <h1 className={styles.headline}>{brief.headline}</h1>
         <p className={styles.deck}>{brief.deck}</p>
 
         <div className={styles.heroActions}>
-          <Button
-            style={ButtonStyle.Primary}
-            showArrow
-            onClick={() =>
-              setDownloadNote(
-                `Prepared ${brief.shortName} executive briefing summary (${region.toUpperCase()} slice).`,
-              )
-            }
-          >
-            Download executive brief
+          <Button style={ButtonStyle.Primary} showArrow onClick={onOpenSimulator}>
+            Launch interactive simulator
           </Button>
           <Button style={ButtonStyle.Secondary} onClick={onOpenLab}>
-            Compare all 3 firms side-by-side
+            Compare all 20 side-by-side
           </Button>
           <Button
             style={ButtonStyle.Editorial}
-            onClick={() => setExhibitTab((t) => (t === 'chart' ? 'table' : 'chart'))}
+            onClick={() =>
+              setExhibitTab((t) =>
+                t === 'chart' ? 'bridge' : t === 'bridge' ? 'table' : 'chart',
+              )
+            }
           >
-            Jump to {exhibitTab === 'chart' ? 'data matrix' : 'visual exhibit'}
+            Cycle exhibit view
           </Button>
         </div>
-
-        {downloadNote && (
-          <p className={styles.actionFeedback} role="status">
-            {downloadNote}
-          </p>
-        )}
       </header>
 
       {/* KPI Metric Strip */}
@@ -245,8 +294,9 @@ export function ReportView({ onOpenLab }: ReportViewProps) {
                 value={exhibitTab}
                 onChange={setExhibitTab}
                 items={[
-                  { id: 'chart', label: 'Exhibit Chart' },
-                  { id: 'table', label: 'Data Matrix', count: filteredRows.length },
+                  { id: 'chart', label: 'Benchmark Bars' },
+                  { id: 'bridge', label: 'Value Bridge' },
+                  { id: 'table', label: 'Harvey Matrix', count: filteredRows.length },
                 ]}
               />
             </div>
@@ -254,6 +304,20 @@ export function ReportView({ onOpenLab }: ReportViewProps) {
         >
           {exhibitTab === 'chart' ? (
             <ExhibitChart data={bars} />
+          ) : exhibitTab === 'bridge' ? (
+            <WaterfallChart
+              style={WaterfallStyle.Classic}
+              ariaLabel="Regional EBITDA value-creation bridge"
+              formatValue={(n) => `${n} bps`}
+              steps={[
+                { id: 's0', label: 'Baseline Margin', value: 1400, kind: 'start' },
+                { id: 's1', label: 'Pricing Discipline', value: 210 },
+                { id: 's2', label: 'Workflow AI', value: 280 },
+                { id: 's3', label: 'Gross Lift', value: 0, kind: 'subtotal' },
+                { id: 's4', label: 'Talent & Cloud', value: -130 },
+                { id: 's5', label: 'Net Run-Rate', value: 0, kind: 'total' },
+              ]}
+            />
           ) : (
             <div className={styles.tableStack}>
               <div className={styles.tableToolbar}>
@@ -287,7 +351,7 @@ export function ReportView({ onOpenLab }: ReportViewProps) {
                   sector: 'Regional Mean (Filtered)',
                   adoptionPct: avgAdoption,
                   ebitdaLift: '—',
-                  readinessScore: avgReadiness,
+                  readinessScore: `${avgReadiness}/100`,
                   medianPayback: '—',
                   tier: `${filteredRows.length} sectors`,
                 }}
@@ -295,6 +359,46 @@ export function ReportView({ onOpenLab }: ReportViewProps) {
             </div>
           )}
         </ExhibitFrame>
+      </section>
+
+      {/* Executive Pull Quote */}
+      <section className={styles.section}>
+        <PullQuote
+          style={PullQuoteStyle.Editorial}
+          quote="Technology budgets alone explain less than a fifth of performance dispersion; the winners re-architect decision speed, incentives, and frontline workflows simultaneously."
+          author="2026 Global Executive Panel"
+          role={`${brief.shortName} Benchmark Synthesis`}
+          organization="42 Markets · n = 10,400"
+        />
+      </section>
+
+      {/* Related Publications Grid */}
+      <section className={styles.section} aria-labelledby="related-heading">
+        <div className={styles.sectionHeader}>
+          <h2 id="related-heading" className={styles.sectionTitle}>
+            Related 2026 Publications
+          </h2>
+          <p className={styles.sectionSub}>
+            Click any publication card to preview its executive summary sheet.
+          </p>
+        </div>
+
+        <div className={styles.insightGrid}>
+          {RELATED_BRIEFS.map((item, idx) => (
+            <InsightCard
+              key={item.id}
+              style={
+                idx === 1 ? InsightCardStyle.Featured : InsightCardStyle.Bordered
+              }
+              eyebrow={item.eyebrow}
+              meta={item.meta}
+              title={item.title}
+              summary={item.summary}
+              ctaLabel="Preview executive brief"
+              onAction={() => setActiveBriefId(item.id)}
+            />
+          ))}
+        </div>
       </section>
 
       {/* Methodology & Footnotes Accordion */}
@@ -318,6 +422,29 @@ export function ReportView({ onOpenLab }: ReportViewProps) {
           }))}
         />
       </section>
+
+      <Drawer
+        open={activeBrief !== null}
+        onClose={() => setActiveBriefId(null)}
+        style={DrawerStyle.Standard}
+        eyebrow={activeBrief?.eyebrow}
+        title={activeBrief?.title ?? ''}
+        subtitle={activeBrief?.meta}
+        footer={
+          <Button
+            style={ButtonStyle.Primary}
+            size={ControlSize.Sm}
+            onClick={() => {
+              setActiveBriefId(null);
+              onOpenSimulator();
+            }}
+          >
+            Model impact in Simulator
+          </Button>
+        }
+      >
+        {activeBrief && <p>{activeBrief.summary}</p>}
+      </Drawer>
     </article>
   );
 }

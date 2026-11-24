@@ -77,3 +77,63 @@ export enum AccordionStyle {
   Separated = 'separated',
   Minimal = 'minimal',
 }
+
+export enum HarveyBallStyle {
+  Solid = 'solid',
+  Ring = 'ring',
+  Minimal = 'minimal',
+}
+
+export enum WaterfallStyle {
+  Classic = 'classic',
+  Clean = 'clean',
+  Compact = 'compact',
+}
+
+export enum MatrixStyle {
+  Quadrant = 'quadrant',
+  Minimal = 'minimal',
+  Card = 'card',
+}
+
+export enum ChevronFlowStyle {
+  Interlocking = 'interlocking',
+  Cards = 'cards',
+  Minimal = 'minimal',
+}
+
+export enum BenchmarkBarStyle {
+  Bullet = 'bullet',
+  Split = 'split',
+  Minimal = 'minimal',
+}
+
+export enum PullQuoteStyle {
+  Editorial = 'editorial',
+  Centered = 'centered',
+  Compact = 'compact',
+}
+
+export enum InsightCardStyle {
+  Editorial = 'editorial',
+  Bordered = 'bordered',
+  Featured = 'featured',
+}
+
+export enum SliderStyle {
+  Standard = 'standard',
+  Stepped = 'stepped',
+  Minimal = 'minimal',
+}
+
+export enum SegmentedControlStyle {
+  Filled = 'filled',
+  Outline = 'outline',
+  Subtle = 'subtle',
+}
+
+export enum DrawerStyle {
+  Standard = 'standard',
+  AccentHeader = 'accent-header',
+  Floating = 'floating',
+}
