@@ -388,7 +388,7 @@ export const METHODOLOGY_ITEMS = [
   },
   {
     id: 'tokens',
-    title: 'How mbb-ui Maps Consulting Design Grammar to Components',
+    title: 'How consulting-ui Maps Consulting Design Grammar to Components',
     meta: 'Zero-runtime CSS Custom Properties + strict TypeScript enums',
     content:
       'Switching the BrandProvider between McKinsey, BCG, and Bain swaps color palettes, display/body font stacks, corner radii (0px vs. 9999px pill vs. 2px financial precision), accent rules, and directional CTA motifs—while component code stays identical.',

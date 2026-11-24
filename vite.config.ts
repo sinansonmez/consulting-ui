@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ command }) => ({
   plugins: [react()],
-  base: command === 'build' ? '/mbb-ui/' : '/',
+  base: command === 'build' ? '/consulting-ui/' : '/',
   build: {
     outDir: 'dist-demo',
     emptyOutDir: true,

@@ -1,24 +1,36 @@
-# mbb-ui — Strategy Consulting React UI Component Library
+# consulting-ui — Strategy Consulting React UI Component Library
 
-[![Live Showcase](https://img.shields.io/badge/Live%20Showcase-GitHub%20Pages-2251FF?style=flat-square)](https://sinansonmez.github.io/mbb-ui/)
-[![React 19](https://img.shields.io/badge/React-19-147B58?style=flat-square)](https://react.dev/)
+[![npm version](https://img.shields.io/npm/v/consulting-ui?style=flat-square&color=147B58)](https://www.npmjs.com/package/consulting-ui)
+[![Live Showcase](https://img.shields.io/badge/Live%20Showcase-GitHub%20Pages-2251FF?style=flat-square)](https://sinansonmez.github.io/consulting-ui/)
+[![React 19](https://img.shields.io/badge/React-19-051C2C?style=flat-square)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-051C2C?style=flat-square)](https://www.typescriptlang.org/)
 [![Zero Runtime Dependencies](https://img.shields.io/badge/Runtime%20Deps-0-CC0000?style=flat-square)](#architecture)
+[![npm Provenance](https://img.shields.io/badge/npm-Trusted%20Publishing%20OIDC-147B58?style=flat-square)](#automated-npm-publishing-oidc)
 [![License: MIT](https://img.shields.io/badge/License-MIT-222222?style=flat-square)](./LICENSE)
 
-**`mbb-ui`** is a zero-dependency **React 19 + TypeScript UI component library** engineered for strategy consulting digital reports, executive briefings, and analytical client dashboards—inspired by the distinctive visual design languages of **McKinsey & Company**, **Boston Consulting Group (BCG)**, and **Bain & Company**.
+**`consulting-ui`** is a zero-dependency **React 19 + TypeScript UI component library** engineered for strategy consulting digital reports, executive briefings, and analytical client dashboards—inspired by the distinctive visual design languages of **McKinsey & Company**, **Boston Consulting Group (BCG)**, and **Bain & Company**.
 
 Switch a single `<BrandProvider>` (or override `brand` on any individual component) to transform **color palettes, display/body typography, corner geometry, accent rules, directional CTA motifs, and Light / Executive Dark surfaces** without changing component code.
 
-**[Explore the Live Interactive Showcase on GitHub Pages →](https://sinansonmez.github.io/mbb-ui/)**
+**[Explore the Live Interactive Showcase on GitHub Pages →](https://sinansonmez.github.io/consulting-ui/)**
 
 ---
 
-## Why `mbb-ui`?
+## Installation
+
+```bash
+npm install consulting-ui
+```
+
+> **Peer dependencies:** `react >= 19` and `react-dom >= 19`. Zero external runtime dependencies.
+
+---
+
+## Why `consulting-ui`?
 
 - **Three Distinct Consulting Design Languages — Not Just Color Swaps:** Switching between `Brand.McKinsey`, `Brand.BCG`, and `Brand.Bain` changes structural geometry (`0px` sharp corners vs. `9999px` pill controls vs. `2px` financial precision), typographic pairings, callout architecture, and button arrow motifs.
 - **Strict TypeScript `enum` `style` API:** Every component exposes a small, brand-safe interface using classic TypeScript `enum`s (`ButtonStyle.Primary`, `CalloutStyle.Executive`, `ExhibitStyle.Editorial`, etc.) and intentionally omits raw inline `CSSProperties` and arbitrary `className` overrides so teams stay on-brand.
-- **Zero External Runtime Dependencies:** Only `react` and `react-dom` peer dependencies. Styles compile into one zero-runtime CSS stylesheet (`mbb-ui/styles.css`) powered by CSS Custom Properties (`[data-brand]` × `[data-surface]`).
+- **Zero External Runtime Dependencies:** Only `react` and `react-dom` peer dependencies. Styles compile into one zero-runtime CSS stylesheet (`consulting-ui/styles.css`) powered by CSS Custom Properties (`[data-brand]` × `[data-surface]`).
 - **Built for Data Storytelling & Analytical Workbenches:** Pairs 5 core interactive controls (`Button`, `Badge`, `Input`, `Select`, `Tabs`) with 5 consulting-report primitives (`Callout`, `MetricCard`, `ExhibitFrame`, `DataTable`, `Accordion`).
 - **Accessible by Default:** Custom brand-styled ARIA `listbox` in `<Select>`, WAI-ARIA roving keyboard navigation in `<Tabs>`, `aria-sort` + `tabular-nums` in `<DataTable>`, visible focus rings, and `prefers-reduced-motion` support.
 
@@ -49,8 +61,8 @@ import {
   MetricCard,
   MetricCardStyle,
   Surface,
-} from 'mbb-ui';
-import 'mbb-ui/styles.css';
+} from 'consulting-ui';
+import 'consulting-ui/styles.css';
 
 export function StrategyBriefing() {
   return (
@@ -115,6 +127,25 @@ export function StrategyBriefing() {
 
 ---
 
+## Automated npm Publishing (OIDC)
+
+This repository automates CI and npm releases via GitHub Actions with **npm Trusted Publishing (GitHub OIDC)** and cryptographic Sigstore **provenance**—zero long-lived `NPM_TOKEN` secrets required:
+
+- **[`.github/workflows/pr-check.yml`](./.github/workflows/pr-check.yml)**: Runs lint, typecheck, Vitest suite, and library + showcase builds on every pull request.
+- **[`.github/workflows/publish.yml`](./.github/workflows/publish.yml)**: Triggered on GitHub **Release `published`** (or manual `workflow_dispatch`). Verifies types, lint, tests, and build on Node 24, then publishes with `npm publish --provenance --access public` using short-lived GitHub OIDC credentials (`id-token: write`).
+- **[`.github/workflows/deploy-pages.yml`](./.github/workflows/deploy-pages.yml)**: Deploys the interactive Showcase to GitHub Pages on every push to `main`.
+
+### One-Time Trusted Publisher Setup on npmjs.com
+
+1. Publish the initial version once locally (`npm login && npm publish --access public`) to register `consulting-ui` on npmjs.com.
+2. Open **npmjs.com → `consulting-ui` → Settings → Trusted Publishers → GitHub Actions** and configure:
+   - **Organization / User:** `sinansonmez`
+   - **Repository:** `consulting-ui`
+   - **Workflow filename:** `publish.yml`
+3. For every future release, bump the version (`npm version patch|minor|major`), push tags (`git push --follow-tags`), and publish a GitHub Release—GitHub Actions publishes automatically with verified provenance.
+
+---
+
 ## Architecture
 
 - **Theme Seam (`BrandProvider` + `tokens.css`):** Zero-runtime CSS Custom Properties cascade from `[data-brand="mckinsey|bcg|bain"]` and `[data-surface="light|dark"]`. Every component stamps its resolved brand/surface attributes so per-component overrides work even in side-by-side multi-firm grids or without a provider.
@@ -128,8 +159,8 @@ export function StrategyBriefing() {
 ## Local Development
 
 ```bash
-git clone https://github.com/sinansonmez/mbb-ui.git
-cd mbb-ui
+git clone https://github.com/sinansonmez/consulting-ui.git
+cd consulting-ui
 npm install
 
 # Run interactive Showcase & Tri-Brand Lab locally
@@ -149,7 +180,7 @@ npm run build:demo
 
 ## Disclaimer
 
-`mbb-ui` is an independent, open-source React UI proof-of-concept and design-system study. It is **not affiliated with, sponsored by, or endorsed by** McKinsey & Company, Boston Consulting Group, or Bain & Company. All trademarks, brand names, and proprietary corporate typeface names belong to their respective owners; open-source Google Font fallbacks are used in the live showcase, and all report metrics shown in the demo are illustrative benchmark datasets.
+`consulting-ui` is an independent, open-source React UI proof-of-concept and design-system study. It is **not affiliated with, sponsored by, or endorsed by** McKinsey & Company, Boston Consulting Group, or Bain & Company. All trademarks, brand names, and proprietary corporate typeface names belong to their respective owners; open-source Google Font fallbacks are used in the live showcase, and all report metrics shown in the demo are illustrative benchmark datasets.
 
 ## License
 

@@ -63,8 +63,10 @@ const FIRMS: readonly { brand: Brand; name: string; spec: string }[] = [
   },
 ];
 
-const USAGE_SNIPPET = `import { BrandProvider, Brand, Surface, Button, ButtonStyle } from 'mbb-ui';
-import 'mbb-ui/styles.css';
+const USAGE_SNIPPET = `npm install consulting-ui
+
+import { BrandProvider, Brand, Surface, Button, ButtonStyle } from 'consulting-ui';
+import 'consulting-ui/styles.css';
 
 export function ExecutiveActions() {
   return (
@@ -415,7 +417,7 @@ export function TriBrandLab() {
                 exhibitLabel="Exhibit 2"
                 title="Productivity payback compresses under 12 months"
                 subtitle="Illustrative index (2024 = 100)"
-                source="mbb-ui showcase benchmark"
+                source="consulting-ui showcase benchmark"
               >
                 <p className={styles.slotCopy}>
                   Chart-agnostic slot supporting SVG, Recharts, Visx, or DataTable.

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
   <rect width="1200" height="630" fill="#051C2C" />
   <rect x="72" y="72" width="1056" height="4" fill="#2251FF" />
-  <text x="72" y="156" fill="#FFFFFF" font-family="Georgia, serif" font-size="68" font-weight="600">mbb-ui</text>
+  <text x="72" y="156" fill="#FFFFFF" font-family="Georgia, serif" font-size="68" font-weight="600">consulting-ui</text>
   <text x="72" y="214" fill="#9CB0C4" font-family="system-ui, sans-serif" font-size="28">
     Strategy Consulting React 19 &amp; TypeScript UI Component Library
   </text>
@@ -30,6 +30,6 @@
   <text x="856" y="455" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="16" font-weight="600">Explore Exhibit ›</text>
 
   <text x="72" y="576" fill="#7C91A6" font-family="system-ui, sans-serif" font-size="18">
-    10 Consulting Components · Strict TypeScript Enums · Zero Runtime Dependencies · Light &amp; Dark Surfaces
+    npm install consulting-ui · 10 Components · Strict TypeScript Enums · Zero Runtime Dependencies
   </text>
 </svg>

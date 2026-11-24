@@ -30,7 +30,7 @@ import {
   type DataTableRow,
 } from '../index';
 
-describe('mbb-ui Top 10 components', () => {
+describe('consulting-ui Top 10 components', () => {
   it('Button applies enum style, loading/disabled invariants, and fires onClick', async () => {
     const user = userEvent.setup();
     const onClick = vi.fn();

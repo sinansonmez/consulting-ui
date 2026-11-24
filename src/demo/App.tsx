@@ -24,9 +24,10 @@ export function App() {
             <div className={styles.brandMark}>
               <span className={styles.logoTile} aria-hidden="true" />
               <div className={styles.brandWordmark}>
-                <span className={styles.packageName}>mbb-ui</span>
-                <span className={styles.packageSub}>Strategy Consulting UI</span>
+                <span className={styles.packageName}>consulting-ui</span>
+                <span className={styles.packageSub}>Strategy Consulting React UI</span>
               </div>
+              <code className={styles.installChip}>npm i consulting-ui</code>
             </div>
 
             <div className={styles.controlCluster}>
@@ -97,17 +98,24 @@ export function App() {
         <footer className={styles.footer}>
           <div className={styles.footerInner}>
             <p className={styles.disclaimer}>
-              <strong>mbb-ui</strong> is an independent, open-source React 19 + TypeScript design-system POC. It is not affiliated with, sponsored by, or endorsed by McKinsey &amp; Company, Boston Consulting Group, or Bain &amp; Company. All metrics shown are illustrative benchmark datasets.
+              <strong>consulting-ui</strong> is an independent, open-source React 19 + TypeScript design-system POC. It is not affiliated with, sponsored by, or endorsed by McKinsey &amp; Company, Boston Consulting Group, or Bain &amp; Company. All metrics shown are illustrative benchmark datasets.
             </p>
             <div className={styles.footerLinks}>
               <a
-                href="https://github.com/sinansonmez/mbb-ui"
+                href="https://github.com/sinansonmez/consulting-ui"
                 target="_blank"
                 rel="noreferrer"
               >
                 GitHub Repository
               </a>
-              <span>MIT License · Zero Runtime Dependencies</span>
+              <a
+                href="https://www.npmjs.com/package/consulting-ui"
+                target="_blank"
+                rel="noreferrer"
+              >
+                npm Package
+              </a>
+              <span>MIT License · Zero Runtime Dependencies · OIDC Provenance</span>
             </div>
           </div>
         </footer>
