@@ -1,0 +1,160 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  border-radius: var(--mbb-radius-card);
+  font-family: var(--mbb-font-sans);
+  color: var(--mbb-text-primary);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--mbb-text-muted);
+  line-height: 1.3;
+}
+
+.delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  padding: 0.18rem 0.5rem;
+  border-radius: var(--mbb-radius-badge);
+  white-space: nowrap;
+}
+
+.deltaUp {
+  background-color: var(--mbb-positive-bg);
+  color: var(--mbb-positive-text);
+}
+
+.deltaDown {
+  background-color: var(--mbb-negative-bg);
+  color: var(--mbb-negative-text);
+}
+
+.deltaNeutral {
+  background-color: var(--mbb-accent-soft);
+  color: var(--mbb-accent);
+}
+
+.figure {
+  font-family: var(--mbb-font-display);
+  font-weight: var(--mbb-display-weight);
+  letter-spacing: var(--mbb-display-tracking);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+  color: var(--mbb-text-primary);
+}
+
+.caption {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--mbb-text-secondary);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem 0.75rem;
+  margin-top: auto;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--mbb-border);
+  font-size: 0.75rem;
+  color: var(--mbb-text-muted);
+}
+
+.benchmark {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--mbb-text-secondary);
+}
+
+.source {
+  font-style: italic;
+}
+
+/* ============================================================================
+   HERO
+   ============================================================================ */
+.style_hero {
+  padding: 1.35rem 1.4rem;
+  background-color: var(--mbb-bg-canvas);
+  border: 1px solid var(--mbb-border);
+  border-top: var(--mbb-rule-heavy) solid var(--mbb-border-strong);
+}
+
+.style_hero .figure {
+  font-size: clamp(2.1rem, 3.5vw, 2.85rem);
+}
+
+.style_hero[data-brand='mckinsey'] .figure {
+  color: var(--mbb-accent);
+}
+
+.style_hero[data-brand='bcg'] {
+  border-top-width: 3px;
+  border-top-color: var(--mbb-accent);
+  background-color: var(--mbb-bg-surface);
+}
+
+.style_hero[data-brand='bain'] {
+  border-top-color: var(--mbb-accent);
+}
+
+/* ============================================================================
+   COMPACT
+   ============================================================================ */
+.style_compact {
+  padding: 1rem 1.15rem;
+  background-color: var(--mbb-bg-surface);
+  border: 1px solid var(--mbb-border);
+}
+
+.style_compact .figure {
+  font-size: 1.75rem;
+}
+
+/* ============================================================================
+   SPLIT — High-impact dark/accent block ("Leaders vs. Laggards")
+   ============================================================================ */
+.style_split {
+  padding: 1.35rem 1.5rem;
+  background-color: var(--mbb-bg-inverse);
+  color: var(--mbb-text-inverse);
+  border: 1px solid transparent;
+}
+
+.style_split .figure {
+  font-size: clamp(2rem, 3vw, 2.55rem);
+  color: inherit;
+}
+
+.style_split .label,
+.style_split .caption,
+.style_split .meta,
+.style_split .benchmark,
+.style_split .source {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.style_split .meta {
+  border-top-color: rgba(255, 255, 255, 0.22);
+}
+
+.style_split[data-brand='bcg'][data-surface='dark'] .meta {
+  border-top-color: rgba(7, 33, 23, 0.22);
+}

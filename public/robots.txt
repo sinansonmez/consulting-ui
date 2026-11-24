@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sinansonmez.github.io/mbb-ui/sitemap.xml

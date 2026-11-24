@@ -1,0 +1,133 @@
+.lab {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 78rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.labHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--mbb-border);
+}
+
+.labTitle {
+  margin: 0;
+  font-family: var(--mbb-font-display);
+  font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+  font-weight: var(--mbb-display-weight);
+  letter-spacing: var(--mbb-display-tracking);
+  line-height: 1.15;
+}
+
+.labDeck {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--mbb-text-secondary);
+  max-width: 52rem;
+}
+
+.labDeck code {
+  font-size: 0.88em;
+  padding: 0.12rem 0.35rem;
+  background-color: var(--mbb-bg-surface);
+  border: 1px solid var(--mbb-border);
+  border-radius: 3px;
+}
+
+.codeBlock {
+  margin: 0.35rem 0 0;
+  padding: 1.1rem 1.35rem;
+  background-color: var(--mbb-bg-surface);
+  border: 1px solid var(--mbb-border);
+  border-radius: var(--mbb-radius-card);
+  overflow-x: auto;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--mbb-text-primary);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.blockTitle {
+  margin: 0;
+  font-family: var(--mbb-font-display);
+  font-size: 1.25rem;
+  font-weight: var(--mbb-display-weight);
+  color: var(--mbb-text-primary);
+}
+
+.triGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.firmPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.3rem;
+  background-color: var(--mbb-bg-canvas);
+  border: 1px solid var(--mbb-border);
+  border-top: var(--mbb-rule-heavy) solid var(--mbb-accent);
+  border-radius: var(--mbb-radius-card);
+}
+
+.firmHeading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--mbb-border);
+}
+
+.firmHeading strong {
+  font-size: 0.88rem;
+  color: var(--mbb-text-primary);
+}
+
+.firmHeading span {
+  font-size: 0.74rem;
+  color: var(--mbb-text-muted);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+.stack > * {
+  max-width: 100%;
+}
+
+.inlineRow,
+.wrapRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.slotCopy {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--mbb-text-secondary);
+}
+
+@media (max-width: 1020px) {
+  .triGrid {
+    grid-template-columns: 1fr;
+  }
+}

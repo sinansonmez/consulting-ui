@@ -1,0 +1,118 @@
+.callout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.4rem 1.6rem;
+  border-radius: var(--mbb-radius-card);
+  font-family: var(--mbb-font-sans);
+  color: var(--mbb-text-primary);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--mbb-accent);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--mbb-font-display);
+  font-size: 1.2rem;
+  font-weight: var(--mbb-display-weight);
+  letter-spacing: var(--mbb-display-tracking);
+  line-height: 1.28;
+  color: inherit;
+}
+
+.body {
+  font-size: 0.925rem;
+  line-height: 1.6;
+  color: var(--mbb-text-secondary);
+}
+
+.body p:first-child {
+  margin-top: 0;
+}
+
+.body p:last-child {
+  margin-bottom: 0;
+}
+
+.footer {
+  margin-top: 0.35rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--mbb-border);
+  font-size: 0.8125rem;
+  color: var(--mbb-text-muted);
+}
+
+/* ============================================================================
+   EXECUTIVE — Each firm's signature Key Takeaways block
+   ============================================================================ */
+.style_executive {
+  background-color: var(--mbb-bg-surface);
+  border: 1px solid var(--mbb-border);
+}
+
+/* McKinsey Executive: 3px electric blue top bar */
+.style_executive[data-brand='mckinsey'] {
+  border-top: 3px solid var(--mbb-accent);
+}
+
+/* BCG Executive: deep emerald/forest filled block with signal-green eyebrow */
+.style_executive[data-brand='bcg'] {
+  background-color: #0e3b2c;
+  border-color: #147b58;
+  color: #f3faf6;
+}
+
+.style_executive[data-brand='bcg'][data-surface='dark'] {
+  background-color: #123a2b;
+  border-color: #29ba74;
+}
+
+.style_executive[data-brand='bcg'] .eyebrow {
+  color: #29ba74;
+}
+
+.style_executive[data-brand='bcg'] .body {
+  color: #d6ebe0;
+}
+
+.style_executive[data-brand='bcg'] .footer {
+  border-top-color: rgba(255, 255, 255, 0.16);
+  color: #9cc2b0;
+}
+
+/* Bain Executive: decisive 4px crimson left rule */
+.style_executive[data-brand='bain'] {
+  border-left: 4px solid var(--mbb-accent);
+}
+
+/* ============================================================================
+   METHODOLOGY — Neutral structured research note
+   ============================================================================ */
+.style_methodology {
+  background-color: transparent;
+  border-top: 1px solid var(--mbb-border-strong);
+  border-bottom: 1px solid var(--mbb-border);
+  border-radius: 0;
+  padding-inline: 0;
+}
+
+.style_methodology .eyebrow {
+  color: var(--mbb-text-muted);
+}
+
+/* ============================================================================
+   HIGHLIGHT — Pull insight / critical watchout
+   ============================================================================ */
+.style_highlight {
+  background-color: var(--mbb-accent-soft);
+  border: 1px solid var(--mbb-accent);
+}
+
+.style_highlight .body {
+  color: var(--mbb-text-primary);
+}

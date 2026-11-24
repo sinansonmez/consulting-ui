@@ -1,0 +1,228 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: var(--mbb-font-sans);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: var(--mbb-radius-control);
+  border: 1.5px solid transparent;
+  transition:
+    background-color var(--mbb-transition-fast),
+    color var(--mbb-transition-fast),
+    border-color var(--mbb-transition-fast),
+    box-shadow var(--mbb-transition-fast),
+    transform var(--mbb-transition-fast);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.button:focus-visible {
+  outline: var(--mbb-focus-width) solid var(--mbb-focus-ring);
+  outline-offset: var(--mbb-focus-offset);
+}
+
+.button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* Sizes */
+.size_sm {
+  font-size: 0.8125rem;
+  padding: 0.45rem 0.95rem;
+  min-height: 2rem;
+}
+
+.size_md {
+  font-size: 0.9rem;
+  padding: 0.65rem 1.35rem;
+  min-height: 2.6rem;
+}
+
+.size_lg {
+  font-size: 0.975rem;
+  padding: 0.85rem 1.75rem;
+  min-height: 3.1rem;
+}
+
+/* ============================================================================
+   PRIMARY
+   ============================================================================ */
+.style_primary {
+  background-color: var(--mbb-accent);
+  color: var(--mbb-text-on-accent);
+  border-color: var(--mbb-accent);
+}
+
+.style_primary:hover:not(:disabled) {
+  background-color: var(--mbb-accent-hover);
+  border-color: var(--mbb-accent-hover);
+}
+
+/* BCG Primary: crisp slightly wider pill padding */
+.style_primary[data-brand='bcg'] {
+  padding-inline: 1.55rem;
+  font-weight: 600;
+}
+
+/* Bain Primary: decisive tight tracking */
+.style_primary[data-brand='bain'] {
+  letter-spacing: 0.015em;
+}
+
+/* ============================================================================
+   SECONDARY
+   ============================================================================ */
+.style_secondary {
+  background-color: transparent;
+  color: var(--mbb-text-primary);
+  border-color: var(--mbb-border-strong);
+}
+
+.style_secondary:hover:not(:disabled) {
+  background-color: var(--mbb-bg-subtle);
+  border-color: var(--mbb-accent);
+  color: var(--mbb-accent);
+}
+
+/* McKinsey Secondary: bold fill invert on hover */
+.style_secondary[data-brand='mckinsey']:hover:not(:disabled) {
+  background-color: var(--mbb-accent-strong);
+  border-color: var(--mbb-accent-strong);
+  color: var(--mbb-text-inverse);
+}
+
+/* Bain Secondary: crimson left accent bar reveal on hover */
+.style_secondary[data-brand='bain']:hover:not(:disabled) {
+  background-color: var(--mbb-bg-surface);
+  border-color: var(--mbb-border-strong);
+  color: var(--mbb-text-primary);
+  box-shadow: inset 3.5px 0 0 var(--mbb-accent);
+}
+
+/* ============================================================================
+   EDITORIAL — Distinct structural motif per firm
+   ============================================================================ */
+.style_editorial {
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 0;
+  padding-inline: 0.1rem;
+  color: var(--mbb-text-primary);
+  gap: 0.5rem;
+}
+
+/* McKinsey Editorial: electric blue text + sliding arrow */
+.style_editorial[data-brand='mckinsey'] {
+  color: var(--mbb-accent);
+  border-bottom: 1.5px solid transparent;
+}
+
+.style_editorial[data-brand='mckinsey']:hover:not(:disabled) {
+  border-bottom-color: var(--mbb-accent);
+}
+
+.style_editorial[data-brand='mckinsey']:hover:not(:disabled) .arrowSlot {
+  transform: translateX(4px);
+}
+
+/* BCG Editorial: signature circular emerald arrow badge */
+.style_editorial[data-brand='bcg'] {
+  color: var(--mbb-text-primary);
+  gap: 0.65rem;
+}
+
+.style_editorial[data-brand='bcg'] .arrowSlot {
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 9999px;
+  background-color: var(--mbb-accent);
+  color: var(--mbb-text-on-accent);
+  transition: transform var(--mbb-transition-fast), background-color var(--mbb-transition-fast);
+}
+
+.style_editorial[data-brand='bcg']:hover:not(:disabled) .arrowSlot {
+  background-color: var(--mbb-accent-hover);
+  transform: translateX(3px);
+}
+
+/* Bain Editorial: decisive charcoal text + crimson chevron + red underline */
+.style_editorial[data-brand='bain'] {
+  color: var(--mbb-text-primary);
+  gap: 0.3rem;
+}
+
+.style_editorial[data-brand='bain'] .label {
+  border-bottom: 1.5px solid transparent;
+  padding-bottom: 1px;
+  transition: border-color var(--mbb-transition-fast);
+}
+
+.style_editorial[data-brand='bain'] .arrowSlot {
+  color: var(--mbb-accent);
+}
+
+.style_editorial[data-brand='bain']:hover:not(:disabled) .label {
+  border-bottom-color: var(--mbb-accent);
+}
+
+.style_editorial[data-brand='bain']:hover:not(:disabled) .arrowSlot {
+  transform: translateX(3px);
+}
+
+/* ============================================================================
+   QUIET
+   ============================================================================ */
+.style_quiet {
+  background-color: transparent;
+  color: var(--mbb-text-muted);
+  border-color: transparent;
+}
+
+.style_quiet:hover:not(:disabled) {
+  background-color: var(--mbb-bg-subtle);
+  color: var(--mbb-text-primary);
+}
+
+/* Arrow & Loading Spinner */
+.arrowSlot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--mbb-transition-fast);
+}
+
+.button:hover:not(:disabled) .arrowSlot {
+  transform: translateX(3px);
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.spinner {
+  width: 0.9em;
+  height: 0.9em;
+  border-radius: 9999px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  animation: mbb-spin 650ms linear infinite;
+}
+
+@keyframes mbb-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

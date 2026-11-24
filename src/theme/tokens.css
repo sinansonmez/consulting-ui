@@ -1,0 +1,217 @@
+/* ============================================================================
+   mbb-ui Design Tokens
+   Zero-runtime CSS Custom Properties keyed by [data-brand] x [data-surface].
+   ============================================================================ */
+
+[data-brand] {
+  --mbb-transition-fast: 160ms cubic-bezier(0.2, 0, 0, 1);
+  --mbb-transition-med: 240ms cubic-bezier(0.2, 0, 0, 1);
+  --mbb-shadow-popover: 0 12px 32px rgba(5, 28, 44, 0.14), 0 2px 6px rgba(5, 28, 44, 0.08);
+  --mbb-positive-bg: #e7f6ee;
+  --mbb-positive-text: #0f6b48;
+  --mbb-negative-bg: #fdecec;
+  --mbb-negative-text: #b81414;
+  --mbb-focus-width: 2px;
+  --mbb-focus-offset: 2px;
+
+  box-sizing: border-box;
+  font-family: var(--mbb-font-sans);
+  color: var(--mbb-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-brand] *,
+[data-brand] *::before,
+[data-brand] *::after {
+  box-sizing: border-box;
+}
+
+[data-brand][data-surface='dark'] {
+  --mbb-shadow-popover: 0 18px 40px rgba(0, 0, 0, 0.48), 0 2px 8px rgba(0, 0, 0, 0.35);
+  --mbb-positive-bg: rgba(41, 186, 116, 0.18);
+  --mbb-positive-text: #6de2a7;
+  --mbb-negative-bg: rgba(230, 32, 32, 0.2);
+  --mbb-negative-text: #ff8080;
+}
+
+/* ----------------------------------------------------------------------------
+   McKinsey & Company — Midnight Navy + Electric Blue, 0px Sharp Architectural
+   ---------------------------------------------------------------------------- */
+[data-brand='mckinsey'] {
+  --mbb-font-display: 'Bower', 'Newsreader', Georgia, 'Times New Roman', serif;
+  --mbb-font-sans: 'McKinsey Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mbb-font-quote: 'Bower', 'Newsreader', Georgia, serif;
+  --mbb-display-weight: 600;
+  --mbb-display-tracking: -0.02em;
+
+  --mbb-radius-control: 0px;
+  --mbb-radius-input: 0px;
+  --mbb-radius-card: 0px;
+  --mbb-radius-badge: 0px;
+  --mbb-rule-heavy: 2px;
+
+  --mbb-bg-canvas: #ffffff;
+  --mbb-bg-surface: #f4f6f9;
+  --mbb-bg-subtle: #eaf0f8;
+  --mbb-bg-inverse: #051c2c;
+  --mbb-text-primary: #051c2c;
+  --mbb-text-secondary: #22384a;
+  --mbb-text-muted: #526475;
+  --mbb-text-on-accent: #ffffff;
+  --mbb-text-inverse: #f7f9fc;
+  --mbb-accent: #2251ff;
+  --mbb-accent-hover: #051c2c;
+  --mbb-accent-strong: #051c2c;
+  --mbb-accent-secondary: #00a9f4;
+  --mbb-accent-soft: #e8eeff;
+  --mbb-border: #d0d7de;
+  --mbb-border-strong: #051c2c;
+  --mbb-focus-ring: #2251ff;
+}
+
+[data-brand='mckinsey'][data-surface='dark'] {
+  --mbb-bg-canvas: #051c2c;
+  --mbb-bg-surface: #0b2940;
+  --mbb-bg-subtle: #113552;
+  --mbb-bg-inverse: #2251ff;
+  --mbb-text-primary: #f7f9fc;
+  --mbb-text-secondary: #d4e0ec;
+  --mbb-text-muted: #8fa6bc;
+  --mbb-text-on-accent: #ffffff;
+  --mbb-text-inverse: #ffffff;
+  --mbb-accent: #3b68ff;
+  --mbb-accent-hover: #5b82ff;
+  --mbb-accent-strong: #74a0ff;
+  --mbb-accent-secondary: #38bdf8;
+  --mbb-accent-soft: rgba(59, 104, 255, 0.22);
+  --mbb-border: rgba(255, 255, 255, 0.16);
+  --mbb-border-strong: rgba(255, 255, 255, 0.72);
+  --mbb-focus-ring: #74a0ff;
+}
+
+/* ----------------------------------------------------------------------------
+   BCG — Deep Emerald + Signal Green, Modern Pill & Soft Modular Geometry
+   ---------------------------------------------------------------------------- */
+[data-brand='bcg'] {
+  --mbb-font-display: 'Henderson BCG Sans', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mbb-font-sans: 'Henderson BCG Sans', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mbb-font-quote: 'Henderson BCG Serif', 'Fraunces', Georgia, serif;
+  --mbb-display-weight: 500;
+  --mbb-display-tracking: -0.025em;
+
+  --mbb-radius-control: 9999px;
+  --mbb-radius-input: 8px;
+  --mbb-radius-card: 10px;
+  --mbb-radius-badge: 9999px;
+  --mbb-rule-heavy: 2px;
+
+  --mbb-bg-canvas: #ffffff;
+  --mbb-bg-surface: #f2f7f4;
+  --mbb-bg-subtle: #e5f1ea;
+  --mbb-bg-inverse: #0e3b2c;
+  --mbb-text-primary: #111a16;
+  --mbb-text-secondary: #2c3e35;
+  --mbb-text-muted: #52665c;
+  --mbb-text-on-accent: #ffffff;
+  --mbb-text-inverse: #f3faf6;
+  --mbb-accent: #147b58;
+  --mbb-accent-hover: #0e3b2c;
+  --mbb-accent-strong: #0e3b2c;
+  --mbb-accent-secondary: #29ba74;
+  --mbb-accent-soft: #e0f5ea;
+  --mbb-border: #d2e0d8;
+  --mbb-border-strong: #147b58;
+  --mbb-focus-ring: #29ba74;
+}
+
+[data-brand='bcg'][data-surface='dark'] {
+  --mbb-bg-canvas: #0b291e;
+  --mbb-bg-surface: #123a2b;
+  --mbb-bg-subtle: #184a37;
+  --mbb-bg-inverse: #29ba74;
+  --mbb-text-primary: #f3faf6;
+  --mbb-text-secondary: #cde4d7;
+  --mbb-text-muted: #8fb4a2;
+  --mbb-text-on-accent: #072117;
+  --mbb-text-inverse: #072117;
+  --mbb-accent: #29ba74;
+  --mbb-accent-hover: #3fd18a;
+  --mbb-accent-strong: #5de09e;
+  --mbb-accent-secondary: #86efac;
+  --mbb-accent-soft: rgba(41, 186, 116, 0.2);
+  --mbb-border: rgba(255, 255, 255, 0.16);
+  --mbb-border-strong: #29ba74;
+  --mbb-focus-ring: #5de09e;
+}
+
+/* ----------------------------------------------------------------------------
+   Bain & Company — Crimson Red + Charcoal, 2px Financial Precision
+   ---------------------------------------------------------------------------- */
+[data-brand='bain'] {
+  --mbb-font-display: 'Tiempos Headline', 'Source Serif 4', Georgia, serif;
+  --mbb-font-sans: 'Graphik', 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mbb-font-quote: 'Tiempos Headline', 'Source Serif 4', Georgia, serif;
+  --mbb-display-weight: 700;
+  --mbb-display-tracking: -0.015em;
+
+  --mbb-radius-control: 2px;
+  --mbb-radius-input: 2px;
+  --mbb-radius-card: 2px;
+  --mbb-radius-badge: 2px;
+  --mbb-rule-heavy: 3px;
+
+  --mbb-bg-canvas: #ffffff;
+  --mbb-bg-surface: #f4f4f4;
+  --mbb-bg-subtle: #ececec;
+  --mbb-bg-inverse: #1c1c1c;
+  --mbb-text-primary: #222222;
+  --mbb-text-secondary: #3d3d3d;
+  --mbb-text-muted: #626262;
+  --mbb-text-on-accent: #ffffff;
+  --mbb-text-inverse: #f7f7f7;
+  --mbb-accent: #cc0000;
+  --mbb-accent-hover: #a30000;
+  --mbb-accent-strong: #990000;
+  --mbb-accent-secondary: #222222;
+  --mbb-accent-soft: #fae6e6;
+  --mbb-border: #d9d9d9;
+  --mbb-border-strong: #222222;
+  --mbb-focus-ring: #cc0000;
+}
+
+[data-brand='bain'][data-surface='dark'] {
+  --mbb-bg-canvas: #181818;
+  --mbb-bg-surface: #242424;
+  --mbb-bg-subtle: #2e2e2e;
+  --mbb-bg-inverse: #cc0000;
+  --mbb-text-primary: #f5f5f5;
+  --mbb-text-secondary: #d4d4d4;
+  --mbb-text-muted: #a1a1a1;
+  --mbb-text-on-accent: #ffffff;
+  --mbb-text-inverse: #ffffff;
+  --mbb-accent: #e62020;
+  --mbb-accent-hover: #ff3b3b;
+  --mbb-accent-strong: #ff5454;
+  --mbb-accent-secondary: #e5e5e5;
+  --mbb-accent-soft: rgba(230, 32, 32, 0.22);
+  --mbb-border: rgba(255, 255, 255, 0.16);
+  --mbb-border-strong: rgba(255, 255, 255, 0.72);
+  --mbb-focus-ring: #ff5454;
+}
+
+.mbb-provider-root {
+  background-color: var(--mbb-bg-canvas);
+  color: var(--mbb-text-primary);
+  font-family: var(--mbb-font-sans);
+  transition: background-color var(--mbb-transition-med), color var(--mbb-transition-med);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-brand],
+  [data-brand] *,
+  .mbb-provider-root {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

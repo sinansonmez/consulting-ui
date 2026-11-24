@@ -1,0 +1,148 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--mbb-font-sans);
+}
+
+.list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.list_underline {
+  width: 100%;
+  border-bottom: 1px solid var(--mbb-border);
+  gap: 1.5rem;
+}
+
+.list_segmented {
+  background-color: var(--mbb-bg-surface);
+  border: 1px solid var(--mbb-border);
+  border-radius: var(--mbb-radius-control);
+  padding: 0.2rem;
+  gap: 0.2rem;
+  align-self: flex-start;
+}
+
+.list_minimal {
+  gap: 1rem;
+}
+
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--mbb-text-muted);
+  cursor: pointer;
+  transition:
+    color var(--mbb-transition-fast),
+    background-color var(--mbb-transition-fast),
+    border-color var(--mbb-transition-fast);
+  white-space: nowrap;
+}
+
+.tab:focus-visible {
+  outline: var(--mbb-focus-width) solid var(--mbb-focus-ring);
+  outline-offset: 2px;
+}
+
+.tab:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.size_sm {
+  font-size: 0.8125rem;
+  padding: 0.45rem 0.65rem;
+}
+
+.size_md {
+  font-size: 0.9rem;
+  padding: 0.6rem 0.9rem;
+}
+
+.size_lg {
+  font-size: 0.975rem;
+  padding: 0.75rem 1.15rem;
+}
+
+/* Underline tabs */
+.tab_underline {
+  padding-inline: 0.1rem;
+  padding-bottom: 0.7rem;
+  margin-bottom: -1px;
+  border-bottom: 2.5px solid transparent;
+}
+
+.tab_underline:hover:not(:disabled) {
+  color: var(--mbb-text-primary);
+}
+
+.tab_underline.selected {
+  color: var(--mbb-text-primary);
+  font-weight: 600;
+  border-bottom-color: var(--mbb-accent);
+}
+
+[data-brand='bain'] .tab_underline.selected {
+  border-bottom-width: 3px;
+}
+
+/* Segmented tabs */
+.tab_segmented {
+  border-radius: var(--mbb-radius-control);
+}
+
+.tab_segmented:hover:not(:disabled) {
+  color: var(--mbb-text-primary);
+}
+
+.tab_segmented.selected {
+  background-color: var(--mbb-accent);
+  color: var(--mbb-text-on-accent);
+  font-weight: 600;
+}
+
+[data-brand='mckinsey'] .tab_segmented.selected {
+  background-color: var(--mbb-accent-strong);
+  color: var(--mbb-text-inverse);
+}
+
+/* Minimal tabs */
+.tab_minimal {
+  padding-inline: 0.2rem;
+}
+
+.tab_minimal:hover:not(:disabled) {
+  color: var(--mbb-text-primary);
+}
+
+.tab_minimal.selected {
+  color: var(--mbb-accent);
+  font-weight: 700;
+}
+
+.tab_minimal.selected::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--mbb-accent);
+  border-radius: var(--mbb-radius-badge);
+}
+
+.count {
+  font-size: 0.75em;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+}
+
+.panel {
+  padding-top: 1.25rem;
+}

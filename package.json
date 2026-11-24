@@ -1,0 +1,75 @@
+{
+  "name": "mbb-ui",
+  "version": "0.1.0",
+  "description": "Strategy consulting React UI component library inspired by McKinsey, BCG, and Bain flagship digital reports and analytical interfaces.",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://sinansonmez.github.io/mbb-ui/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sinansonmez/mbb-ui.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "ui-library",
+    "design-system",
+    "component-library",
+    "consulting",
+    "mckinsey",
+    "bcg",
+    "bain",
+    "data-storytelling"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json",
+    "build:demo": "tsc -b && vite build",
+    "preview": "vite preview --outDir dist-demo",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -b --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^26.6.7",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^17.14.0",
+    "jsdom": "^27.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vite": "^7.2.2",
+    "vitest": "^4.0.9"
+  }
+}

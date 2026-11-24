@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#051C2C" />
+  <rect x="72" y="72" width="1056" height="4" fill="#2251FF" />
+  <text x="72" y="156" fill="#FFFFFF" font-family="Georgia, serif" font-size="68" font-weight="600">mbb-ui</text>
+  <text x="72" y="214" fill="#9CB0C4" font-family="system-ui, sans-serif" font-size="28">
+    Strategy Consulting React 19 &amp; TypeScript UI Component Library
+  </text>
+
+  <!-- McKinsey swatch card -->
+  <rect x="72" y="280" width="328" height="240" fill="#0B2940" stroke="#2251FF" stroke-width="2" />
+  <rect x="72" y="280" width="328" height="8" fill="#2251FF" />
+  <text x="100" y="340" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="600">McKinsey</text>
+  <text x="100" y="378" fill="#9CB0C4" font-family="system-ui, sans-serif" font-size="18">0px Sharp · Navy &amp; Electric Blue</text>
+  <rect x="100" y="426" width="180" height="46" fill="#2251FF" />
+  <text x="124" y="455" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="16" font-weight="600">Explore Exhibit →</text>
+
+  <!-- BCG swatch card -->
+  <rect x="436" y="280" width="328" height="240" rx="12" fill="#0E3B2C" stroke="#29BA74" stroke-width="2" />
+  <text x="464" y="340" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="30" font-weight="500">BCG</text>
+  <text x="464" y="378" fill="#9CC2B0" font-family="system-ui, sans-serif" font-size="18">Pill Geometry · Emerald &amp; Signal</text>
+  <rect x="464" y="426" width="186" height="46" rx="23" fill="#29BA74" />
+  <text x="492" y="455" fill="#0B291E" font-family="system-ui, sans-serif" font-size="16" font-weight="700">Explore Exhibit →</text>
+
+  <!-- Bain swatch card -->
+  <rect x="800" y="280" width="328" height="240" rx="2" fill="#222222" stroke="#D9D9D9" stroke-opacity="0.25" stroke-width="1.5" />
+  <rect x="800" y="280" width="6" height="240" fill="#CC0000" />
+  <text x="832" y="340" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700">Bain</text>
+  <text x="832" y="378" fill="#B5B5B5" font-family="system-ui, sans-serif" font-size="18">2px Precision · Crimson &amp; Charcoal</text>
+  <rect x="832" y="426" width="180" height="46" rx="2" fill="#CC0000" />
+  <text x="856" y="455" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="16" font-weight="600">Explore Exhibit ›</text>
+
+  <text x="72" y="576" fill="#7C91A6" font-family="system-ui, sans-serif" font-size="18">
+    10 Consulting Components · Strict TypeScript Enums · Zero Runtime Dependencies · Light &amp; Dark Surfaces
+  </text>
+</svg>

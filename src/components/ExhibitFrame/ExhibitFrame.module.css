@@ -1,0 +1,137 @@
+.frame {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-family: var(--mbb-font-sans);
+  color: var(--mbb-text-primary);
+  border-radius: var(--mbb-radius-card);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+}
+
+.headingGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 48rem;
+}
+
+.exhibitLabel {
+  display: inline-flex;
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--mbb-accent);
+}
+
+[data-brand='bcg'] .exhibitLabel {
+  background-color: var(--mbb-accent-soft);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--mbb-radius-badge);
+}
+
+.title {
+  font-family: var(--mbb-font-display);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: var(--mbb-display-weight);
+  letter-spacing: var(--mbb-display-tracking);
+  line-height: 1.25;
+  color: var(--mbb-text-primary);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--mbb-text-muted);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.canvas {
+  width: 100%;
+  min-width: 0;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--mbb-border);
+  font-size: 0.775rem;
+  line-height: 1.5;
+  color: var(--mbb-text-muted);
+}
+
+.footerLine {
+  margin: 0;
+}
+
+.footerKey {
+  font-weight: 600;
+  color: var(--mbb-text-secondary);
+}
+
+/* ============================================================================
+   EDITORIAL — Classic report exhibit anchored by heavy top rule
+   ============================================================================ */
+.style_editorial {
+  padding: 1.35rem 0 0;
+  border-top: var(--mbb-rule-heavy) solid var(--mbb-border-strong);
+  border-radius: 0;
+}
+
+.style_editorial[data-brand='bain'] {
+  border-top-color: var(--mbb-accent);
+}
+
+/* ============================================================================
+   CARD — Contained analytical dashboard module
+   ============================================================================ */
+.style_card {
+  padding: 1.5rem 1.65rem;
+  background-color: var(--mbb-bg-canvas);
+  border: 1px solid var(--mbb-border);
+}
+
+.style_card[data-brand='bcg'] {
+  background-color: var(--mbb-bg-surface);
+}
+
+/* ============================================================================
+   ACCENT HEADER — Branded header band framing dense exhibits
+   ============================================================================ */
+.style_accent-header {
+  border: 1px solid var(--mbb-border);
+  overflow: hidden;
+  background-color: var(--mbb-bg-canvas);
+  gap: 0;
+}
+
+.style_accent-header .header {
+  padding: 1.3rem 1.5rem;
+  background-color: var(--mbb-bg-surface);
+  border-bottom: 2px solid var(--mbb-accent);
+}
+
+.style_accent-header .canvas {
+  padding: 1.4rem 1.5rem;
+}
+
+.style_accent-header .footer {
+  padding: 0.85rem 1.5rem 1.15rem;
+}

@@ -1,0 +1,127 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: var(--mbb-font-sans);
+  color: var(--mbb-text-primary);
+}
+
+.heading {
+  margin: 0;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.05rem 0;
+  border: none;
+  background: transparent;
+  color: var(--mbb-text-primary);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: color var(--mbb-transition-fast);
+}
+
+.trigger:hover:not(:disabled) {
+  color: var(--mbb-accent);
+}
+
+.trigger:focus-visible {
+  outline: var(--mbb-focus-width) solid var(--mbb-focus-ring);
+  outline-offset: 2px;
+}
+
+.trigger:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.title {
+  font-size: 0.975rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.meta {
+  font-size: 0.775rem;
+  font-weight: 400;
+  color: var(--mbb-text-muted);
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--mbb-accent);
+  transition: transform var(--mbb-transition-fast);
+}
+
+[data-brand='bcg'] .iconOpen {
+  transform: rotate(180deg);
+}
+
+.panel {
+  padding: 0 0 1.2rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--mbb-text-secondary);
+}
+
+.panel p:first-child {
+  margin-top: 0;
+}
+
+.panel p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================================
+   BORDERED — Classic report methodology / footnotes hairlines
+   ============================================================================ */
+.style_bordered {
+  border-top: 1.5px solid var(--mbb-border-strong);
+}
+
+.style_bordered .item {
+  border-bottom: 1px solid var(--mbb-border);
+}
+
+/* ============================================================================
+   SEPARATED — Modular cards per disclosure item
+   ============================================================================ */
+.style_separated {
+  gap: 0.65rem;
+}
+
+.style_separated .item {
+  background-color: var(--mbb-bg-surface);
+  border: 1px solid var(--mbb-border);
+  border-radius: var(--mbb-radius-card);
+  padding-inline: 1.2rem;
+}
+
+.style_separated .itemOpen {
+  border-color: var(--mbb-accent);
+}
+
+/* ============================================================================
+   MINIMAL — Flush inline disclosure
+   ============================================================================ */
+.style_minimal .item {
+  border-bottom: 1px dashed var(--mbb-border);
+}
+
+.style_minimal .trigger {
+  padding-block: 0.75rem;
+}

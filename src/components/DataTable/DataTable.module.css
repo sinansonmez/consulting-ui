@@ -1,0 +1,149 @@
+.container {
+  width: 100%;
+  overflow-x: auto;
+  font-family: var(--mbb-font-sans);
+  color: var(--mbb-text-primary);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.caption {
+  caption-side: top;
+  text-align: left;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--mbb-text-muted);
+  padding-bottom: 0.65rem;
+}
+
+.headRow {
+  border-top: var(--mbb-rule-heavy) solid var(--mbb-border-strong);
+  border-bottom: 1.5px solid var(--mbb-border-strong);
+}
+
+[data-brand='bain'] .headRow {
+  border-top-color: var(--mbb-accent);
+}
+
+.th {
+  padding: 0.75rem 0.85rem;
+  font-size: 0.775rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--mbb-text-secondary);
+  white-space: nowrap;
+}
+
+.th:first-child,
+.td:first-child {
+  padding-left: 0.5rem;
+}
+
+.th:last-child,
+.td:last-child {
+  padding-right: 0.5rem;
+}
+
+.sortButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.sortButton:hover {
+  color: var(--mbb-accent);
+}
+
+.sortButton:focus-visible {
+  outline: var(--mbb-focus-width) solid var(--mbb-focus-ring);
+  outline-offset: 2px;
+}
+
+.sortRight {
+  flex-direction: row-reverse;
+}
+
+.bodyRow {
+  border-bottom: 1px solid var(--mbb-border);
+  transition: background-color var(--mbb-transition-fast);
+}
+
+.bodyRow:hover {
+  background-color: var(--mbb-bg-subtle);
+}
+
+.highlightedRow {
+  background-color: var(--mbb-accent-soft);
+}
+
+.highlightedRow .leadCell {
+  color: var(--mbb-accent);
+  font-weight: 700;
+}
+
+.td {
+  padding: 0.78rem 0.85rem;
+  font-size: 0.885rem;
+  line-height: 1.4;
+  color: var(--mbb-text-primary);
+}
+
+.leadCell {
+  font-weight: 600;
+}
+
+.alignLeft {
+  text-align: left;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.summaryRow {
+  border-top: 1.5px solid var(--mbb-border-strong);
+  border-bottom: var(--mbb-rule-heavy) solid var(--mbb-border-strong);
+  background-color: var(--mbb-bg-surface);
+}
+
+.summaryCell {
+  font-weight: 700;
+  color: var(--mbb-text-primary);
+}
+
+.emptyCell {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--mbb-text-muted);
+  font-size: 0.875rem;
+}
+
+/* ============================================================================
+   ZEBRA — Alternating row bands for wide analytical matrices
+   ============================================================================ */
+.style_zebra .bodyRow:nth-child(even):not(.highlightedRow) {
+  background-color: var(--mbb-bg-surface);
+}
+
+/* ============================================================================
+   COMPACT — High-density financial table
+   ============================================================================ */
+.style_compact .th {
+  padding: 0.5rem 0.65rem;
+  font-size: 0.725rem;
+}
+
+.style_compact .td {
+  padding: 0.48rem 0.65rem;
+  font-size: 0.825rem;
+}
