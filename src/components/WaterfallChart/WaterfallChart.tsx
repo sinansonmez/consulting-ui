@@ -12,12 +12,19 @@ import type { ConsultingChartOption } from '../../charts/echartsCore';
 
 export type WaterfallStepKind = 'start' | 'delta' | 'subtotal' | 'total';
 
-export interface WaterfallStep {
-  id: string;
-  label: string;
-  value: number;
-  kind?: WaterfallStepKind;
-}
+export type WaterfallStep =
+  | {
+      id: string;
+      label: string;
+      value: number;
+      kind?: WaterfallStepKind;
+    }
+  | {
+      id: string;
+      label: string;
+      kind: 'subtotal' | 'total';
+      value?: number;
+    };
 
 export interface WaterfallChartProps {
   steps: readonly WaterfallStep[];
@@ -57,11 +64,12 @@ function computeWaterfallLayout(
 
     let startVal = 0;
     let endVal = 0;
-    let raw = step.value;
+    const stepValue = step.value ?? 0;
+    let raw = stepValue;
     let displayLabel = '';
 
     if (kind === 'start') {
-      running = step.value;
+      running = stepValue;
       startVal = 0;
       endVal = running;
       displayLabel = formatValue(running);
@@ -72,13 +80,13 @@ function computeWaterfallLayout(
       displayLabel = formatValue(running);
     } else {
       startVal = running;
-      endVal = running + step.value;
+      endVal = running + stepValue;
       running = endVal;
-      const absFormatted = formatValue(Math.abs(step.value));
+      const absFormatted = formatValue(Math.abs(stepValue));
       displayLabel =
-        step.value > 0
+        stepValue > 0
           ? `+${absFormatted}`
-          : step.value < 0
+          : stepValue < 0
             ? `-${absFormatted}`
             : absFormatted;
     }

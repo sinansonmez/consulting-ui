@@ -48,22 +48,18 @@
   border-radius: 3px;
 }
 
-.codeBlock {
-  margin: 0.35rem 0 0;
-  padding: 1.1rem 1.35rem;
-  background-color: var(--mbb-bg-surface);
-  border: 1px solid var(--mbb-border);
-  border-radius: var(--mbb-radius-card);
-  overflow-x: auto;
-  font-size: 0.82rem;
-  line-height: 1.55;
-  color: var(--mbb-text-primary);
-}
-
 .block {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.blockHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .blockTitle {

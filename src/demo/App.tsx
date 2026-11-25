@@ -8,17 +8,20 @@ import {
   TabsStyle,
 } from '../index';
 import { ChartsGalleryView } from './components/ChartsGalleryView';
+import { useCopyFeedback } from './components/codeUtils';
 import { ReportView } from './components/ReportView';
 import { SimulatorView } from './components/SimulatorView';
 import { TriBrandLab } from './components/TriBrandLab';
 import styles from './App.module.css';
 
 type ShowcaseView = 'report' | 'charts' | 'simulator' | 'lab';
+const INSTALL_COMMAND = 'npm i consulting-ui';
 
 export function App() {
   const [brand, setBrand] = useState<Brand>(Brand.McKinsey);
   const [surface, setSurface] = useState<Surface>(Surface.Light);
   const [view, setView] = useState<ShowcaseView>('report');
+  const { copied: installCopied, copy: copyInstall } = useCopyFeedback();
 
   return (
     <BrandProvider brand={brand} surface={surface}>
@@ -31,7 +34,21 @@ export function App() {
                 <span className={styles.packageName}>consulting-ui</span>
                 <span className={styles.packageSub}>Strategy Consulting React UI</span>
               </div>
-              <code className={styles.installChip}>npm i consulting-ui</code>
+              <button
+                type="button"
+                className={`${styles.installChip} ${installCopied ? styles.installChipCopied : ''}`}
+                aria-label={
+                  installCopied
+                    ? 'Copied install command'
+                    : 'Copy install command: npm i consulting-ui'
+                }
+                onClick={() => void copyInstall(INSTALL_COMMAND)}
+              >
+                <code>{INSTALL_COMMAND}</code>
+                <span className={styles.installChipAction}>
+                  {installCopied ? '✓ Copied' : 'Copy'}
+                </span>
+              </button>
             </div>
 
             <div className={styles.controlCluster}>

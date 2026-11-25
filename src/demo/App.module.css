@@ -61,14 +61,54 @@
 .installChip {
   display: inline-flex;
   align-items: center;
+  gap: 0.45rem;
   padding: 0.3rem 0.65rem;
   margin-left: 0.35rem;
+  font-family: var(--mbb-font-sans);
   font-size: 0.75rem;
   font-weight: 600;
   background-color: var(--mbb-bg-surface);
   border: 1px solid var(--mbb-border);
   border-radius: var(--mbb-radius-badge);
   color: var(--mbb-text-secondary);
+  cursor: pointer;
+  transition:
+    border-color var(--mbb-transition-fast),
+    background-color var(--mbb-transition-fast),
+    color var(--mbb-transition-fast);
+}
+
+.installChip:hover {
+  border-color: var(--mbb-border-strong);
+  color: var(--mbb-text-primary);
+}
+
+.installChip:focus-visible {
+  outline: 2px solid var(--mbb-focus-ring);
+  outline-offset: 2px;
+}
+
+.installChip code {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+  font-size: 0.74rem;
+}
+
+.installChipAction {
+  font-size: 0.68rem;
+  padding-left: 0.45rem;
+  border-left: 1px solid var(--mbb-border);
+  color: var(--mbb-text-muted);
+}
+
+.installChipCopied {
+  background-color: var(--mbb-positive-bg);
+  border-color: var(--mbb-positive-text);
+  color: var(--mbb-positive-text);
+}
+
+.installChipCopied .installChipAction {
+  border-left-color: var(--mbb-positive-text);
+  color: var(--mbb-positive-text);
 }
 
 @media (max-width: 720px) {

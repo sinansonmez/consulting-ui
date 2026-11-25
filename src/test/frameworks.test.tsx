@@ -14,6 +14,8 @@ import {
   MatrixStyle,
   WaterfallChart,
   WaterfallStyle,
+  type WaterfallStep,
+  type WaterfallStepKind,
 } from '../index';
 
 describe('Consulting framework & visual exhibits (#11–#15)', () => {
@@ -92,6 +94,31 @@ describe('Consulting framework & visual exhibits (#11–#15)', () => {
     expect(screen.getByText('$140M')).toBeInTheDocument();
     expect(screen.getByText('+$35M')).toBeInTheDocument();
     expect(screen.getByText('-$15M')).toBeInTheDocument();
+  });
+
+  it('WaterfallChart allows omitting value on subtotal and total steps while preserving WaterfallStepKind compatibility', () => {
+    const startKind: WaterfallStepKind = 'start';
+    const steps: WaterfallStep[] = [
+      { id: 'base', label: 'FY24 Base', value: 120, kind: startKind },
+      { id: 'price', label: 'Pricing', value: 28 },
+      { id: 'sub', label: 'Gross Lift', kind: 'subtotal' },
+      { id: 'capex', label: 'Capex', value: -18 },
+      { id: 'end', label: 'FY26 Target', kind: 'total' },
+    ];
+
+    render(
+      <BrandProvider brand={Brand.McKinsey}>
+        <WaterfallChart
+          style={WaterfallStyle.Clean}
+          ariaLabel="Optional value waterfall bridge"
+          formatValue={(n) => `$${n}M`}
+          steps={steps}
+        />
+      </BrandProvider>,
+    );
+
+    expect(screen.getByText('$148M')).toBeInTheDocument();
+    expect(screen.getByText('$130M')).toBeInTheDocument();
   });
 
   it('Matrix2x2 renders quadrant headers and supports keyboard/click selection of plotted items', async () => {

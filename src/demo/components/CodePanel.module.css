@@ -1,0 +1,224 @@
+.panel {
+  margin-top: 0.75rem;
+  border: 1px solid var(--mbb-border);
+  border-radius: var(--mbb-radius-card);
+  background-color: var(--mbb-bg-surface);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 0.75rem;
+  padding: 0.5rem 0.85rem;
+  background-color: var(--mbb-bg-subtle);
+  border-bottom: 1px solid var(--mbb-border);
+}
+
+.metaCluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.langBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.12rem 0.42rem;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background-color: var(--mbb-accent-soft);
+  color: var(--mbb-accent-strong);
+  border-radius: var(--mbb-radius-badge);
+}
+
+.titleText {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--mbb-text-primary);
+}
+
+.themePill {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--mbb-text-muted);
+  padding-left: 0.45rem;
+  border-left: 1px solid var(--mbb-border);
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.68rem;
+  font-family: var(--mbb-font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--mbb-text-primary);
+  background-color: var(--mbb-bg-canvas);
+  border: 1px solid var(--mbb-border);
+  border-radius: var(--mbb-radius-control);
+  cursor: pointer;
+  transition:
+    background-color var(--mbb-transition-fast),
+    border-color var(--mbb-transition-fast),
+    color var(--mbb-transition-fast);
+}
+
+.copyBtn:hover {
+  border-color: var(--mbb-border-strong);
+}
+
+.copyBtn:focus-visible {
+  outline: 2px solid var(--mbb-focus-ring);
+  outline-offset: 2px;
+}
+
+.copyBtnCopied {
+  background-color: var(--mbb-positive-bg);
+  border-color: var(--mbb-positive-text);
+  color: var(--mbb-positive-text);
+}
+
+.pre {
+  margin: 0;
+  padding: 0.85rem 0;
+  max-height: 420px;
+  overflow: auto;
+  background-color: var(--mbb-bg-surface);
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  tab-size: 2;
+}
+
+.code {
+  display: block;
+  min-width: max-content;
+}
+
+.line {
+  display: flex;
+  padding: 0 1rem 0 0;
+}
+
+.line:hover {
+  background-color: var(--mbb-bg-subtle);
+}
+
+.lineNum {
+  flex-shrink: 0;
+  width: 2.75rem;
+  padding-right: 0.9rem;
+  text-align: right;
+  color: var(--mbb-text-muted);
+  opacity: 0.7;
+  user-select: none;
+  -webkit-user-select: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.lineContent {
+  white-space: pre;
+  color: var(--mbb-text-primary);
+}
+
+/* Syntax tokens driven purely by --mbb-* brand x surface tokens */
+.tok_comment {
+  color: var(--mbb-text-muted);
+  font-style: italic;
+}
+
+.tok_keyword {
+  color: var(--mbb-accent-strong);
+  font-weight: 600;
+}
+
+.tok_tag {
+  color: var(--mbb-accent);
+  font-weight: 600;
+}
+
+.panel[data-surface='dark'] .tok_tag {
+  color: var(--mbb-accent-strong);
+}
+
+.tok_enum {
+  color: var(--mbb-chart-2);
+  font-weight: 500;
+}
+
+.tok_attr {
+  color: var(--mbb-text-secondary);
+}
+
+.tok_string {
+  color: var(--mbb-positive-text);
+}
+
+.tok_number {
+  color: var(--mbb-negative-text);
+}
+
+.tok_punctuation {
+  color: var(--mbb-text-muted);
+}
+
+.tok_plain {
+  color: var(--mbb-text-primary);
+}
+
+/* Shared inline </> Code toggle button */
+.toggleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.32rem 0.72rem;
+  font-family: var(--mbb-font-sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--mbb-text-secondary);
+  background-color: var(--mbb-bg-surface);
+  border: 1px solid var(--mbb-border);
+  border-radius: var(--mbb-radius-control);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color var(--mbb-transition-fast),
+    border-color var(--mbb-transition-fast),
+    color var(--mbb-transition-fast);
+}
+
+.toggleBtn:hover {
+  color: var(--mbb-text-primary);
+  border-color: var(--mbb-border-strong);
+}
+
+.toggleBtn:focus-visible {
+  outline: 2px solid var(--mbb-focus-ring);
+  outline-offset: 2px;
+}
+
+.toggleBtnActive {
+  background-color: var(--mbb-accent);
+  border-color: var(--mbb-accent);
+  color: var(--mbb-text-on-accent);
+}
+
+.toggleBtnActive:hover {
+  color: var(--mbb-text-on-accent);
+  border-color: var(--mbb-accent);
+}
+
+.glyph {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+  font-size: 0.74rem;
+  opacity: 0.9;
+}

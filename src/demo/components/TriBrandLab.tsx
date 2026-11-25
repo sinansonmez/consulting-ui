@@ -68,6 +68,11 @@ import {
   type DataTableColumn,
   type DataTableRow,
 } from '../../index';
+import {
+  buildLabSectionSnippet,
+  buildQuickStartSnippet,
+} from '../data/labSnippets';
+import { CodePanel, CodeToggleButton } from './CodePanel';
 import styles from './TriBrandLab.module.css';
 
 type CategoryFilter = 'all' | 'charts' | 'controls' | 'editorial' | 'frameworks';
@@ -107,29 +112,6 @@ const FIRMS: readonly { brand: Brand; name: string; spec: string }[] = [
     spec: '#CC0000 · #222222 · 2px rules · Tiempos / Graphik',
   },
 ];
-
-const USAGE_SNIPPET = `npm install consulting-ui
-
-import { BrandProvider, Brand, Surface, Button, ButtonStyle, WaterfallChart, WaterfallStyle } from 'consulting-ui';
-import 'consulting-ui/styles.css';
-
-export function ExecutiveBrief() {
-  return (
-    <BrandProvider brand={Brand.McKinsey} surface={Surface.Light}>
-      <WaterfallChart
-        style={WaterfallStyle.Classic}
-        formatValue={(n) => \`$\${n}M\`}
-        steps={[
-          { id: 'base', label: 'FY24', value: 100, kind: 'start' },
-          { id: 'ops', label: 'AI Ops', value: 28 },
-          { id: 'end', label: 'FY26', value: 0, kind: 'total' },
-        ]}
-      />
-      <Button style={ButtonStyle.Primary}>Download brief</Button>
-      <Button brand={Brand.BCG} style={ButtonStyle.Editorial}>BCG override</Button>
-    </BrandProvider>
-  );
-}`;
 
 interface LabSectionSpec {
   number: number;
@@ -388,7 +370,7 @@ const LAB_SECTIONS: readonly LabSectionSpec[] = [
           { id: 'w1', label: 'Base', value: 80, kind: 'start' },
           { id: 'w2', label: 'Price', value: 24 },
           { id: 'w3', label: 'Cost', value: -10 },
-          { id: 'w4', label: 'FY26', value: 0, kind: 'total' },
+          { id: 'w4', label: 'FY26', kind: 'total' },
         ]}
       />
     ),
@@ -815,8 +797,13 @@ const LAB_SECTIONS: readonly LabSectionSpec[] = [
 ];
 
 export function TriBrandLab() {
-  const { surface } = useBrand();
+  const { brand, surface } = useBrand();
   const [category, setCategory] = useState<CategoryFilter>('all');
+  const [openCode, setOpenCode] = useState<Record<number, boolean>>({});
+
+  const toggleCode = (num: number) => {
+    setOpenCode((prev) => ({ ...prev, [num]: !prev[num] }));
+  };
 
   const visibleSections =
     category === 'all'
@@ -854,36 +841,57 @@ export function TriBrandLab() {
           Every component rendered side-by-side across <code>Brand.McKinsey</code>,{' '}
           <code>Brand.BCG</code>, and <code>Brand.Bain</code> using per-component{' '}
           <code>brand</code> overrides and strict TypeScript <code>style</code> enums.
+          Click <code>&lt;/&gt; Code</code> on any section to copy ready-to-paste TSX.
         </p>
 
-        <pre className={styles.codeBlock}>
-          <code>{USAGE_SNIPPET}</code>
-        </pre>
+        <CodePanel
+          title="Quick Start"
+          code={buildQuickStartSnippet(brand, surface)}
+        />
       </header>
 
-      {visibleSections.map((section) => (
-        <section key={section.number} className={styles.block}>
-          <h2 className={styles.blockTitle}>
-            {section.number}. {section.title}
-          </h2>
-          <div className={styles.triGrid}>
-            {FIRMS.map((firm) => (
-              <div
-                key={firm.brand}
-                className={styles.firmPanel}
-                data-brand={firm.brand}
-                data-surface={surface}
-              >
-                <div className={styles.firmHeading}>
-                  <strong>{firm.name}</strong>
-                  {section.number === 1 && <span>{firm.spec}</span>}
+      {visibleSections.map((section) => {
+        const isCodeOpen = Boolean(openCode[section.number]);
+        const codeId = `lab-code-${section.number}`;
+        return (
+          <section key={section.number} className={styles.block}>
+            <div className={styles.blockHeader}>
+              <h2 className={styles.blockTitle}>
+                {section.number}. {section.title}
+              </h2>
+              <CodeToggleButton
+                expanded={isCodeOpen}
+                controlsId={codeId}
+                itemLabel={section.title}
+                onToggle={() => toggleCode(section.number)}
+              />
+            </div>
+            <div className={styles.triGrid}>
+              {FIRMS.map((firm) => (
+                <div
+                  key={firm.brand}
+                  className={styles.firmPanel}
+                  data-brand={firm.brand}
+                  data-surface={surface}
+                >
+                  <div className={styles.firmHeading}>
+                    <strong>{firm.name}</strong>
+                    {section.number === 1 && <span>{firm.spec}</span>}
+                  </div>
+                  {section.renderFirm(firm.brand)}
                 </div>
-                {section.renderFirm(firm.brand)}
-              </div>
-            ))}
-          </div>
-        </section>
-      ))}
+              ))}
+            </div>
+            {isCodeOpen && (
+              <CodePanel
+                id={codeId}
+                title={section.title}
+                code={buildLabSectionSnippet(section.number, brand, surface)}
+              />
+            )}
+          </section>
+        );
+      })}
     </div>
   );
 }

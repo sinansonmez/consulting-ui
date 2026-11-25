@@ -91,9 +91,9 @@ export function ValueCreationBrief() {
             { id: 'base', label: 'FY24 Base', value: 100, kind: 'start' },
             { id: 'price', label: 'Pricing', value: 35 },
             { id: 'infl', label: 'Inflation', value: -15 },
-            { id: 'sub', label: 'Subtotal', value: 0, kind: 'subtotal' },
+            { id: 'sub', label: 'Subtotal', kind: 'subtotal' },
             { id: 'ai', label: 'AI Ops', value: 20 },
-            { id: 'end', label: 'FY26 Run-Rate', value: 0, kind: 'total' },
+            { id: 'end', label: 'FY26 Run-Rate', kind: 'total' },
           ]}
         />
       </ExhibitFrame>
