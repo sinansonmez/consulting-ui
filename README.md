@@ -4,15 +4,15 @@
 [![Live Showcase](https://img.shields.io/badge/Live%20Showcase-GitHub%20Pages-2251FF?style=flat-square)](https://sinansonmez.github.io/consulting-ui/)
 [![React 19](https://img.shields.io/badge/React-19-051C2C?style=flat-square)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-051C2C?style=flat-square)](https://www.typescriptlang.org/)
-[![Apache ECharts SVG](https://img.shields.io/badge/Charts-Apache%20ECharts%20SVG-CC0000?style=flat-square)](#complete-26-component-catalog)
+[![Apache ECharts SVG](https://img.shields.io/badge/Charts-12%20ECharts%20SVG-CC0000?style=flat-square)](#complete-31-component-catalog)
 [![npm Provenance](https://img.shields.io/badge/npm-Trusted%20Publishing%20OIDC-147B58?style=flat-square)](#automated-npm-publishing-oidc)
 [![License: MIT](https://img.shields.io/badge/License-MIT-222222?style=flat-square)](./LICENSE)
 
-**`consulting-ui`** is a **React 19 + TypeScript UI, consulting-framework, and data-visualization component library (26 components)** engineered for strategy consulting digital reports, executive slide briefings, interactive ROI/maturity simulators, and analytical client dashboards—inspired by the distinctive visual design languages of **McKinsey & Company**, **Boston Consulting Group (BCG)**, and **Bain & Company**.
+**`consulting-ui`** is a **React 19 + TypeScript UI, consulting-framework, and data-visualization component library (31 components · 12 ECharts SVG charts)** engineered for strategy consulting digital reports, executive slide briefings, interactive ROI/maturity simulators, and analytical client dashboards—inspired by the distinctive visual design languages of **McKinsey & Company**, **Boston Consulting Group (BCG)**, and **Bain & Company**.
 
 Switch a single `<BrandProvider>` (or override `brand` on any individual component) to transform **color palettes, display/body typography, corner geometry, accent rules, directional CTA motifs, and Light / Executive Dark surfaces** without changing component code.
 
-**[Explore the Live 3-View Interactive Showcase on GitHub Pages →](https://sinansonmez.github.io/consulting-ui/)**
+**[Explore the Live 4-View Interactive Showcase on GitHub Pages →](https://sinansonmez.github.io/consulting-ui/)**
 
 ---
 
@@ -29,7 +29,7 @@ npm install consulting-ui
 ## Why `consulting-ui`?
 
 - **Three Distinct Consulting Design Languages — Not Just Color Swaps:** Switching between `Brand.McKinsey`, `Brand.BCG`, and `Brand.Bain` changes structural geometry (`0px` sharp corners vs. `9999px` pill controls vs. `2px` financial precision), curated 6-step chart color ramps, typographic pairings, chevron shapes, callout architecture, and button arrow motifs.
-- **Publication-Grade Consulting Charts & Frameworks:** Ships first-class consulting exhibits powered by modular Apache ECharts SVG rendering—`WaterfallChart`, `BarChart`, `StackedBarChart`, `DumbbellChart`, `MarimekkoChart`, `FunnelChart`, and `SankeyChart`—alongside `Matrix2x2`, `HarveyBall`, `ChevronFlow`, and `BenchmarkBar`.
+- **Publication-Grade Consulting Charts & Frameworks:** Ships 12 consulting charts powered by modular Apache ECharts SVG rendering—`LineChart`, `ComboChart`, `BubbleChart`, `HeatmapChart`, `SlopeChart`, `WaterfallChart`, `BarChart`, `StackedBarChart`, `DumbbellChart`, `MarimekkoChart`, `FunnelChart`, and `SankeyChart`—alongside `Matrix2x2`, `HarveyBall`, `ChevronFlow`, and `BenchmarkBar`.
 - **Strict TypeScript `enum` `style` API:** Every component exposes a small, brand-safe interface using classic TypeScript `enum`s (`ButtonStyle.Primary`, `WaterfallStyle.Classic`, `MarimekkoStyle.Editorial`, etc.) and intentionally omits raw inline `CSSProperties` and arbitrary `className` overrides so teams stay on-brand.
 - **Zero-Runtime CSS Custom Properties:** All styles compile into one stylesheet (`consulting-ui/styles.css`) powered by `[data-brand]` × `[data-surface]` tokens, paired with `ResizeObserver`-driven responsive SVG charts.
 - **Accessible by Default:** Custom brand-styled ARIA `listbox` in `<Select>`, WAI-ARIA roving keyboard focus in `<Tabs>` and `<SegmentedControl>`, portal `dialog` focus management in `<Drawer>`, `aria-sort` + `tabular-nums` in `<DataTable>`, visible focus rings, and `prefers-reduced-motion` support.
@@ -113,9 +113,9 @@ export function ValueCreationBrief() {
 
 ---
 
-## Complete 26-Component Catalog
+## Complete 31-Component Catalog
 
-### Publication-Grade Consulting Charts (7 · Apache ECharts SVG)
+### Publication-Grade Consulting Charts (12 · Apache ECharts SVG)
 
 | # | Component | `style` Enum Variants | Key Capabilities |
 | :-: | :--- | :--- | :--- |
@@ -125,7 +125,12 @@ export function ValueCreationBrief() {
 | 23 | **`DumbbellChart`** | `DumbbellStyle`: `Gap` · `Range` · `Minimal` | Two-cohort dot-and-bridge plots supporting negative-to-positive zero axes, optional median benchmarks, and right-hand gap callout columns |
 | 24 | **`MarimekkoChart`** | `MarimekkoStyle`: `Editorial` · `Compact` · `Outlined` | Proportional-width stacked composition with 3-tier automatic labeling (dual-corner, inline, and collision-free sliver arrow callouts) + display serif hero totals |
 | 25 | **`FunnelChart`** | `FunnelStyle`: `Tiered` · `Tapered` · `Horizontal` | Scaling/attrition funnels with drop-off bridges, stage notes, and cumulative/step conversion callouts |
-| 26 | **`SankeyChart`** | `SankeyStyle`: `Editorial` · `Flow` · `Minimal` | Multi-stage value & budget flow ribbons with computed node totals, `%` shares, and hover adjacency path highlighting |
+| 26 | **`SankeyChart`** | `SankeyStyle`: `Editorial` · `Flow` · `Minimal` | Multi-stage value & budget flow ribbons with computed node totals, `%` shares, and hover/click adjacency path highlighting |
+| 27 | **`LineChart`** | `LineChartStyle`: `Trend` · `Forecast` · `StackedArea` | Time-series trends with direct end-of-line labels, solid-to-dashed forecast split, scenario confidence band, regime shading, and stacked market-size areas |
+| 28 | **`ComboChart`** | `ComboChartStyle`: `BarLine` · `StackedLine` · `Indexed` | Dual-axis vertical bars (`$B`/`$M`) paired with overlaid margin/growth lines (`%`), stacked bar combos, and unified indexed views |
+| 29 | **`BubbleChart`** | `BubbleChartStyle`: `GrowthShare` · `Scatter` · `Quadrant` | Quantitative X × Y × area-proportional bubble-size plots (BCG Growth-Share Matrix, ROIC vs. growth) with median crosshairs and corner quadrant labels |
+| 30 | **`HeatmapChart`** | `HeatmapStyle`: `Sequential` · `Diverging` · `Scorecard` | Industry × Function value matrices and risk/maturity scorecards with per-cell contrast-aware numerals and optional right-hand row summary column |
+| 31 | **`SlopeChart`** | `SlopeChartStyle`: `BeforeAfter` · `RankShift` · `Indexed` | Direct-labeled 2-period slope graphs, multi-period inverted rank bump charts (`#1` at top), and explicit right-edge delta shifts |
 
 ### Interactive Controls (7)
 
@@ -169,7 +174,7 @@ This repository automates CI and npm releases via GitHub Actions with **npm Trus
 
 - **[`.github/workflows/pr-check.yml`](./.github/workflows/pr-check.yml)**: Runs lint, typecheck, Vitest suite, and library + showcase builds on every pull request.
 - **[`.github/workflows/publish.yml`](./.github/workflows/publish.yml)**: Triggered on GitHub **Release `published`** (or manual `workflow_dispatch`). Verifies types, lint, tests, and build on Node 24, then publishes with `npm publish --provenance --access public` using short-lived GitHub OIDC credentials (`id-token: write`).
-- **[`.github/workflows/deploy-pages.yml`](./.github/workflows/deploy-pages.yml)**: Deploys the 3-view interactive Showcase to GitHub Pages on every push to `main`.
+- **[`.github/workflows/deploy-pages.yml`](./.github/workflows/deploy-pages.yml)**: Deploys the 4-view interactive Showcase to GitHub Pages on every push to `main`.
 
 ---
 
@@ -180,10 +185,10 @@ git clone https://github.com/sinansonmez/consulting-ui.git
 cd consulting-ui
 npm install
 
-# Run 3-view interactive Showcase locally
+# Run 4-view interactive Showcase locally
 npm run dev
 
-# Run Vitest + Testing Library suite across all 26 components
+# Run Vitest + Testing Library suite across all 31 components
 npm test
 
 # Typecheck, lint, and build library + GitHub Pages showcase

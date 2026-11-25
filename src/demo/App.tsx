@@ -7,12 +7,13 @@ import {
   Tabs,
   TabsStyle,
 } from '../index';
+import { ChartsGalleryView } from './components/ChartsGalleryView';
 import { ReportView } from './components/ReportView';
 import { SimulatorView } from './components/SimulatorView';
 import { TriBrandLab } from './components/TriBrandLab';
 import styles from './App.module.css';
 
-type ShowcaseView = 'report' | 'simulator' | 'lab';
+type ShowcaseView = 'report' | 'charts' | 'simulator' | 'lab';
 
 export function App() {
   const [brand, setBrand] = useState<Brand>(Brand.McKinsey);
@@ -84,8 +85,9 @@ export function App() {
               onChange={(next) => setView(next as ShowcaseView)}
               items={[
                 { id: 'report', label: 'Interactive 2026 Strategy Report' },
+                { id: 'charts', label: 'Charts Gallery', count: 12 },
                 { id: 'simulator', label: 'Diagnostic & Frameworks Simulator' },
-                { id: 'lab', label: 'Tri-Brand Side-by-Side Lab', count: 26 },
+                { id: 'lab', label: 'Tri-Brand Side-by-Side Lab', count: 31 },
               ]}
             />
           </div>
@@ -97,6 +99,8 @@ export function App() {
               onOpenLab={() => setView('lab')}
               onOpenSimulator={() => setView('simulator')}
             />
+          ) : view === 'charts' ? (
+            <ChartsGalleryView />
           ) : view === 'simulator' ? (
             <SimulatorView onOpenLab={() => setView('lab')} />
           ) : (
@@ -107,7 +111,7 @@ export function App() {
         <footer className={styles.footer}>
           <div className={styles.footerInner}>
             <p className={styles.disclaimer}>
-              <strong>consulting-ui</strong> is an independent, open-source React 19 + TypeScript design-system library (26 components). It is not affiliated with, sponsored by, or endorsed by McKinsey &amp; Company, Boston Consulting Group, or Bain &amp; Company. All metrics shown are illustrative benchmark datasets.
+              <strong>consulting-ui</strong> is an independent, open-source React 19 + TypeScript design-system library (31 components). It is not affiliated with, sponsored by, or endorsed by McKinsey &amp; Company, Boston Consulting Group, or Bain &amp; Company. All metrics shown are illustrative benchmark datasets.
             </p>
             <div className={styles.footerLinks}>
               <a

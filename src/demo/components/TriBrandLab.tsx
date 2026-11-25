@@ -9,12 +9,16 @@ import {
   BenchmarkBar,
   BenchmarkBarStyle,
   Brand,
+  BubbleChart,
+  BubbleChartStyle,
   Button,
   ButtonStyle,
   Callout,
   CalloutStyle,
   ChevronFlow,
   ChevronFlowStyle,
+  ComboChart,
+  ComboChartStyle,
   ControlSize,
   DataTable,
   DataTableStyle,
@@ -28,10 +32,14 @@ import {
   FunnelStyle,
   HarveyBall,
   HarveyBallStyle,
+  HeatmapChart,
+  HeatmapStyle,
   Input,
   InputStyle,
   InsightCard,
   InsightCardStyle,
+  LineChart,
+  LineChartStyle,
   MarimekkoChart,
   MarimekkoStyle,
   Matrix2x2,
@@ -48,6 +56,8 @@ import {
   SelectStyle,
   Slider,
   SliderStyle,
+  SlopeChart,
+  SlopeChartStyle,
   StackedBarChart,
   StackedBarStyle,
   Tabs,
@@ -685,6 +695,119 @@ const LAB_SECTIONS: readonly LabSectionSpec[] = [
           { source: 'chg', target: 'cld', value: 14 },
           { source: 'chg', target: 'ai', value: 22 },
           { source: 'chg', target: 'app', value: 6 },
+        ]}
+      />
+    ),
+  },
+  {
+    number: 27,
+    title: 'LineChart — LineChartStyle enum (Trend / Forecast / StackedArea)',
+    category: 'charts',
+    renderFirm: (brand) => (
+      <LineChart
+        brand={brand}
+        style={LineChartStyle.Forecast}
+        height={220}
+        periods={['22', '24', '26', '28', '30']}
+        forecastStartIndex={2}
+        formatValue={(v) => `$${v}B`}
+        band={{
+          low: [null, null, 480, 515, 548],
+          high: [null, null, 480, 565, 635],
+        }}
+        series={[
+          { id: 'mkt', label: 'Beauty', values: [410, 448, 480, 536, 590], tone: 'primary', emphasized: true },
+        ]}
+      />
+    ),
+  },
+  {
+    number: 28,
+    title: 'ComboChart — ComboChartStyle enum (BarLine / StackedLine / Indexed)',
+    category: 'charts',
+    renderFirm: (brand) => (
+      <ComboChart
+        brand={brand}
+        style={ComboChartStyle.BarLine}
+        height={230}
+        periods={['FY23', 'FY24', 'FY25', 'FY26']}
+        formatBarValue={(v) => `$${v}B`}
+        formatLineValue={(v) => `${v}%`}
+        barSeries={[
+          { id: 'rev', label: 'Revenue', values: [4.7, 5.4, 6.2, 7.1], tone: 'neutral' },
+        ]}
+        lineSeries={[
+          { id: 'ebitda', label: 'Margin', values: [20, 22, 24, 25], tone: 'primary' },
+        ]}
+      />
+    ),
+  },
+  {
+    number: 29,
+    title: 'BubbleChart — BubbleChartStyle enum (GrowthShare / Scatter / Quadrant)',
+    category: 'charts',
+    renderFirm: (brand) => (
+      <BubbleChart
+        brand={brand}
+        style={BubbleChartStyle.GrowthShare}
+        height={250}
+        xAxisLabel="Rel. Share"
+        yAxisLabel="Growth %"
+        xThreshold={1.1}
+        yThreshold={11}
+        quadrantLabels={{
+          topLeft: 'Bets',
+          topRight: 'Stars',
+          bottomLeft: 'Exit',
+          bottomRight: 'Cows',
+        }}
+        formatX={(v) => `${v}x`}
+        formatY={(v) => `${v}%`}
+        data={[
+          { id: 'a1', label: 'Cloud AI', x: 1.8, y: 24, size: 480, highlighted: true },
+          { id: 'a2', label: 'Core ERP', x: 2.0, y: 5, size: 800, tone: 'secondary' },
+          { id: 'a3', label: 'Edge', x: 0.6, y: 20, size: 190, tone: 'tertiary' },
+        ]}
+      />
+    ),
+  },
+  {
+    number: 30,
+    title: 'HeatmapChart — HeatmapStyle enum (Sequential / Diverging / Scorecard)',
+    category: 'charts',
+    renderFirm: (brand) => (
+      <HeatmapChart
+        brand={brand}
+        style={HeatmapStyle.Scorecard}
+        height={210}
+        rows={['Bank', 'Tech', 'Retail']}
+        columns={['Sales', 'Ops', 'R&D']}
+        formatValue={(v) => `${v}%`}
+        rowSummaryLabel="Avg"
+        values={[
+          [4.6, 5.2, 4.9],
+          [4.8, 4.4, 6.2],
+          [5.1, 4.7, 2.6],
+        ]}
+      />
+    ),
+  },
+  {
+    number: 31,
+    title: 'SlopeChart — SlopeChartStyle enum (BeforeAfter / RankShift / Indexed)',
+    category: 'charts',
+    renderFirm: (brand) => (
+      <SlopeChart
+        brand={brand}
+        style={SlopeChartStyle.Indexed}
+        height={220}
+        periods={['2021', '2026']}
+        formatValue={(v) => `${v}%`}
+        formatDelta={(d) => `${d > 0 ? '+' : ''}${d}`}
+        series={[
+          { id: 's1', label: 'Social AI', values: [11, 29], highlighted: true },
+          { id: 's2', label: 'Market', values: [32, 35] },
+          { id: 's3', label: 'Retail', values: [38, 19] },
         ]}
       />
     ),

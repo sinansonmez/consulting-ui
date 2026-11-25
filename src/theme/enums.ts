@@ -173,3 +173,33 @@ export enum SankeyStyle {
   Flow = 'flow',
   Minimal = 'minimal',
 }
+
+export enum LineChartStyle {
+  Trend = 'trend',
+  Forecast = 'forecast',
+  StackedArea = 'stacked-area',
+}
+
+export enum ComboChartStyle {
+  BarLine = 'bar-line',
+  StackedLine = 'stacked-line',
+  Indexed = 'indexed',
+}
+
+export enum BubbleChartStyle {
+  GrowthShare = 'growth-share',
+  Scatter = 'scatter',
+  Quadrant = 'quadrant',
+}
+
+export enum HeatmapStyle {
+  Sequential = 'sequential',
+  Diverging = 'diverging',
+  Scorecard = 'scorecard',
+}
+
+export enum SlopeChartStyle {
+  BeforeAfter = 'before-after',
+  RankShift = 'rank-shift',
+  Indexed = 'indexed',
+}

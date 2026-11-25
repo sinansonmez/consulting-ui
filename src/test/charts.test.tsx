@@ -4,16 +4,26 @@ import {
   BarChartStyle,
   Brand,
   BrandProvider,
+  BubbleChart,
+  BubbleChartStyle,
+  ComboChart,
+  ComboChartStyle,
   DumbbellChart,
   DumbbellStyle,
   ExhibitFrame,
   ExhibitStyle,
   FunnelChart,
   FunnelStyle,
+  HeatmapChart,
+  HeatmapStyle,
+  LineChart,
+  LineChartStyle,
   MarimekkoChart,
   MarimekkoStyle,
   SankeyChart,
   SankeyStyle,
+  SlopeChart,
+  SlopeChartStyle,
   StackedBarChart,
   StackedBarStyle,
 } from '../index';
@@ -398,5 +408,250 @@ describe('Consulting charts & editorial framing', () => {
     expect(
       screen.getByRole('img', { name: 'Minimal flow' }),
     ).toHaveAttribute('data-style', 'minimal');
+  });
+
+  it('LineChart renders Trend direct end labels, Forecast split with scenario band, and StackedArea', () => {
+    render(
+      <BrandProvider brand={Brand.McKinsey}>
+        <LineChart
+          style={LineChartStyle.Forecast}
+          ariaLabel="Global beauty market forecast"
+          periods={['2022', '2024', '2026', '2028', '2030']}
+          forecastStartIndex={2}
+          formatValue={(v) => `$${v}B`}
+          band={{
+            low: [null, null, 480, 515, 550],
+            high: [null, null, 480, 565, 635],
+            label: 'Scenario range',
+          }}
+          series={[
+            {
+              id: 'global',
+              label: 'Global beauty',
+              values: [410, 446, 480, 536, 590],
+              tone: 'primary',
+              emphasized: true,
+            },
+          ]}
+        />
+        <LineChart
+          style={LineChartStyle.StackedArea}
+          ariaLabel="Market size by channel"
+          periods={['2023', '2024', '2025']}
+          formatValue={(v) => `$${v}B`}
+          series={[
+            { id: 'store', label: 'Specialty retail', values: [120, 130, 140], tone: 'neutral' },
+            { id: 'ecom', label: 'Social & e-commerce', values: [60, 82, 115], tone: 'primary' },
+          ]}
+        />
+      </BrandProvider>,
+    );
+
+    expect(
+      screen.getByRole('img', { name: 'Global beauty market forecast' }),
+    ).toHaveAttribute('data-style', 'forecast');
+    expect(screen.getByText(/Global beauty/)).toBeInTheDocument();
+    expect(screen.getByText(/\$590B/)).toBeInTheDocument();
+    expect(screen.getByText('Forecast')).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('img', { name: 'Market size by channel' }),
+    ).toHaveAttribute('data-style', 'stacked-area');
+    expect(screen.getByText('$255B')).toBeInTheDocument();
+  });
+
+  it('ComboChart BarLine renders dual-axis revenue bars with overlaid margin line and supports StackedLine', () => {
+    render(
+      <BrandProvider brand={Brand.Bain}>
+        <ComboChart
+          style={ComboChartStyle.BarLine}
+          ariaLabel="Revenue and EBITDA margin trajectory"
+          periods={['FY22', 'FY23', 'FY24', 'FY25']}
+          barAxisLabel="Revenue ($B)"
+          lineAxisLabel="EBITDA margin (%)"
+          formatBarValue={(v) => `$${v}B`}
+          formatLineValue={(v) => `${v}%`}
+          barSeries={[
+            { id: 'rev', label: 'Revenue', values: [4.2, 4.8, 5.5, 6.4], tone: 'neutral' },
+          ]}
+          lineSeries={[
+            { id: 'ebitda', label: 'EBITDA margin', values: [18.5, 20.1, 22.4, 24.8], tone: 'primary' },
+          ]}
+        />
+        <ComboChart
+          style={ComboChartStyle.StackedLine}
+          ariaLabel="Stacked revenue mix and growth"
+          periods={['2024', '2025']}
+          barSeries={[
+            { id: 'core', label: 'Core', values: [80, 84], tone: 'neutral' },
+            { id: 'ai', label: 'AI-native', values: [12, 26], tone: 'secondary' },
+          ]}
+          lineSeries={[
+            { id: 'margin', label: 'Operating margin', values: [21, 25], tone: 'primary' },
+          ]}
+        />
+        <ComboChart
+          style={ComboChartStyle.Indexed}
+          ariaLabel="Indexed volume versus benchmark"
+          periods={['2024', '2025']}
+          formatBarValue={(v) => `${v} idx`}
+          barSeries={[
+            { id: 'actual', label: 'Actual index', values: [100, 118] },
+          ]}
+          lineSeries={[
+            { id: 'target', label: 'Target index', values: [100, 112] },
+          ]}
+        />
+      </BrandProvider>,
+    );
+
+    expect(
+      screen.getByRole('img', { name: 'Revenue and EBITDA margin trajectory' }),
+    ).toHaveAttribute('data-style', 'bar-line');
+    expect(screen.getByText('$6.4B')).toBeInTheDocument();
+    expect(screen.getByText('24.8%')).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('img', { name: 'Stacked revenue mix and growth' }),
+    ).toHaveAttribute('data-style', 'stacked-line');
+    expect(
+      screen.getByRole('img', { name: 'Indexed volume versus benchmark' }),
+    ).toHaveAttribute('data-style', 'indexed');
+    expect(screen.getByText('112 idx')).toBeInTheDocument();
+  });
+
+  it('BubbleChart GrowthShare renders numeric X/Y/Size bubbles with quadrant labels and supports Scatter', () => {
+    render(
+      <BrandProvider brand={Brand.BCG}>
+        <BubbleChart
+          style={BubbleChartStyle.GrowthShare}
+          ariaLabel="Portfolio growth-share matrix"
+          xAxisLabel="Relative Market Share (x)"
+          yAxisLabel="Market Growth (%)"
+          sizeLabel="Revenue ($M)"
+          xThreshold={1.0}
+          yThreshold={10}
+          quadrantLabels={{
+            topLeft: 'Question Marks',
+            topRight: 'Stars',
+            bottomLeft: 'Pets',
+            bottomRight: 'Cash Cows',
+          }}
+          formatX={(v) => `${v}x`}
+          formatY={(v) => `${v}%`}
+          formatSize={(v) => `$${v}M`}
+          data={[
+            { id: 'ai', label: 'Agentic Cloud', x: 1.8, y: 24, size: 420, highlighted: true },
+            { id: 'erp', label: 'Core ERP', x: 2.1, y: 5, size: 880, tone: 'secondary' },
+            { id: 'iot', label: 'Edge Telemetry', x: 0.5, y: 18, size: 160, tone: 'tertiary' },
+          ]}
+        />
+        <BubbleChart
+          style={BubbleChartStyle.Scatter}
+          ariaLabel="ROIC vs growth scatter"
+          xAxisLabel="Revenue CAGR (%)"
+          yAxisLabel="ROIC (%)"
+          data={[
+            { id: 'p1', label: 'Peer A', x: 12, y: 19, size: 100 },
+            { id: 'p2', label: 'Peer B', x: 6, y: 11, size: 220 },
+          ]}
+        />
+      </BrandProvider>,
+    );
+
+    expect(
+      screen.getByRole('img', { name: 'Portfolio growth-share matrix' }),
+    ).toHaveAttribute('data-style', 'growth-share');
+    expect(screen.getByText('Agentic Cloud')).toBeInTheDocument();
+    expect(screen.getByText('Core ERP')).toBeInTheDocument();
+    expect(screen.getByText('Stars')).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('img', { name: 'ROIC vs growth scatter' }),
+    ).toHaveAttribute('data-style', 'scatter');
+  });
+
+  it('HeatmapChart Sequential and Scorecard render matrix headers, direct cell values, and row summary', () => {
+    render(
+      <BrandProvider brand={Brand.McKinsey}>
+        <HeatmapChart
+          style={HeatmapStyle.Scorecard}
+          ariaLabel="GenAI value potential by industry and function"
+          rows={['Banking', 'Retail']}
+          columns={['Sales', 'Ops', 'Tech']}
+          formatValue={(v) => `${v}%`}
+          rowSummaryLabel="Avg"
+          values={[
+            [4.2, 2.8, 5.0],
+            [3.6, 4.4, 2.5],
+          ]}
+        />
+        <HeatmapChart
+          style={HeatmapStyle.Diverging}
+          ariaLabel="Regional YoY margin variance"
+          rows={['NA', 'EMEA']}
+          columns={['Q1', 'Q2']}
+          formatValue={(v) => `${v > 0 ? '+' : ''}${v}`}
+          values={[
+            [12, -8],
+            [-4, 9],
+          ]}
+        />
+      </BrandProvider>,
+    );
+
+    expect(
+      screen.getByRole('img', { name: 'GenAI value potential by industry and function' }),
+    ).toHaveAttribute('data-style', 'scorecard');
+    expect(screen.getByText('Banking')).toBeInTheDocument();
+    expect(screen.getByText('Sales')).toBeInTheDocument();
+    expect(screen.getByText('4.2%')).toBeInTheDocument();
+    expect(screen.getByText('Avg')).toBeInTheDocument();
+    // Row 0 avg: (4.2 + 2.8 + 5.0) / 3 = 4.0%
+    expect(screen.getByText('4%')).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('img', { name: 'Regional YoY margin variance' }),
+    ).toHaveAttribute('data-style', 'diverging');
+    expect(screen.getByText('+12')).toBeInTheDocument();
+    expect(screen.getByText('-8')).toBeInTheDocument();
+  });
+
+  it('SlopeChart renders BeforeAfter endpoint labels, RankShift inverted ranks, and Indexed delta suffixes', () => {
+    render(
+      <BrandProvider brand={Brand.McKinsey}>
+        <SlopeChart
+          style={SlopeChartStyle.Indexed}
+          ariaLabel="Digital channel share shift 2021 to 2026"
+          periods={['2021', '2026']}
+          formatValue={(v) => `${v}%`}
+          formatDelta={(d) => `${d > 0 ? '+' : ''}${d} pp`}
+          series={[
+            { id: 'social', label: 'Social commerce', values: [11, 29], highlighted: true },
+            { id: 'dept', label: 'Department stores', values: [26, 17] },
+          ]}
+        />
+        <SlopeChart
+          style={SlopeChartStyle.RankShift}
+          ariaLabel="Top global capabilities ranking"
+          periods={['2022', '2024', '2026']}
+          series={[
+            { id: 'ai', label: 'Agentic AI', values: [4, 2, 1], highlighted: true },
+            { id: 'erp', label: 'ERP Upgrade', values: [1, 2, 3] },
+          ]}
+        />
+      </BrandProvider>,
+    );
+
+    expect(
+      screen.getByRole('img', { name: 'Digital channel share shift 2021 to 2026' }),
+    ).toHaveAttribute('data-style', 'indexed');
+    expect(screen.getAllByText(/Social commerce/)).toHaveLength(2);
+    expect(screen.getByText(/\+18 pp/)).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('img', { name: 'Top global capabilities ranking' }),
+    ).toHaveAttribute('data-style', 'rank-shift');
+    expect(screen.getAllByText(/Agentic AI/).length).toBeGreaterThanOrEqual(1);
   });
 });

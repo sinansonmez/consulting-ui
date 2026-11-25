@@ -30,6 +30,11 @@ export {
   MarimekkoStyle,
   FunnelStyle,
   SankeyStyle,
+  LineChartStyle,
+  ComboChartStyle,
+  BubbleChartStyle,
+  HeatmapStyle,
+  SlopeChartStyle,
 } from './theme/enums';
 
 export {
@@ -148,4 +153,34 @@ export {
   type SankeyLink,
   type SankeyNode,
 } from './components/SankeyChart/SankeyChart';
+export {
+  LineChart,
+  type LineChartProps,
+  type LineConfidenceBand,
+  type LinePointSelection,
+  type LineRegimeZone,
+  type LineSeriesSpec,
+} from './components/LineChart/LineChart';
+export {
+  ComboChart,
+  type ComboBarSeriesSpec,
+  type ComboChartProps,
+  type ComboLineSeriesSpec,
+} from './components/ComboChart/ComboChart';
+export {
+  BubbleChart,
+  type BubbleChartProps,
+  type BubbleDatum,
+  type BubbleQuadrantLabels,
+} from './components/BubbleChart/BubbleChart';
+export {
+  HeatmapChart,
+  type HeatmapCellSelection,
+  type HeatmapChartProps,
+} from './components/HeatmapChart/HeatmapChart';
+export {
+  SlopeChart,
+  type SlopeChartProps,
+  type SlopeSeriesSpec,
+} from './components/SlopeChart/SlopeChart';
 export type { ChartSemanticTone } from './charts/chartTheme';

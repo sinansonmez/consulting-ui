@@ -204,7 +204,7 @@ export function ReportView({ onOpenLab, onOpenSimulator }: ReportViewProps) {
         <div className={styles.tagRow}>
           <Badge style={BadgeStyle.Accent}>{brief.practiceTag}</Badge>
           <Badge style={BadgeStyle.Outline}>{brief.releaseTag}</Badge>
-          <Badge style={BadgeStyle.Positive}>26 Components</Badge>
+          <Badge style={BadgeStyle.Positive}>31 Components</Badge>
         </div>
 
         <h1 className={styles.headline}>{brief.headline}</h1>
@@ -215,7 +215,7 @@ export function ReportView({ onOpenLab, onOpenSimulator }: ReportViewProps) {
             Launch interactive simulator
           </Button>
           <Button style={ButtonStyle.Secondary} onClick={onOpenLab}>
-            Compare all 26 side-by-side
+            Compare all 31 side-by-side
           </Button>
           <Button
             style={ButtonStyle.Editorial}

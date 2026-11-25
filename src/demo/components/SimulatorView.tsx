@@ -142,7 +142,7 @@ export function SimulatorView({ onOpenLab }: SimulatorViewProps) {
             </p>
           </div>
           <Button style={ButtonStyle.Secondary} size={ControlSize.Sm} onClick={onOpenLab}>
-            Inspect all 26 in Lab
+            Inspect all 31 in Lab
           </Button>
         </div>
       </header>

@@ -282,15 +282,46 @@ export function resolveToneColor(
   }
 }
 
+function parseHexRgb(hex: string): [number, number, number] {
+  const cleaned = hex.replace('#', '');
+  if (cleaned.length !== 6) return [128, 128, 128];
+  return [
+    parseInt(cleaned.slice(0, 2), 16),
+    parseInt(cleaned.slice(2, 4), 16),
+    parseInt(cleaned.slice(4, 6), 16),
+  ];
+}
+
+function toHexColor(r: number, g: number, b: number): string {
+  const clamp = (n: number) =>
+    Math.min(255, Math.max(0, Math.round(n)))
+      .toString(16)
+      .padStart(2, '0');
+  return `#${clamp(r)}${clamp(g)}${clamp(b)}`;
+}
+
+export function lerpHexColor(
+  fromHex: string,
+  toHex: string,
+  t: number,
+): string {
+  const ratio = Math.min(1, Math.max(0, t));
+  const [r1, g1, b1] = parseHexRgb(fromHex);
+  const [r2, g2, b2] = parseHexRgb(toHex);
+  return toHexColor(
+    r1 + (r2 - r1) * ratio,
+    g1 + (g2 - g1) * ratio,
+    b1 + (b2 - b1) * ratio,
+  );
+}
+
 export function getContrastTextColor(
   hexColor: string,
   darkTextFallback = '#111a16',
 ): string {
   const cleaned = hexColor.replace('#', '');
   if (cleaned.length !== 6) return '#ffffff';
-  const r = parseInt(cleaned.slice(0, 2), 16);
-  const g = parseInt(cleaned.slice(2, 4), 16);
-  const b = parseInt(cleaned.slice(4, 6), 16);
+  const [r, g, b] = parseHexRgb(cleaned);
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   return luminance > 0.58 ? darkTextFallback : '#ffffff';
 }
