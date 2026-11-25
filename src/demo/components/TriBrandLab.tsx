@@ -24,6 +24,8 @@ import {
   DumbbellStyle,
   ExhibitFrame,
   ExhibitStyle,
+  FunnelChart,
+  FunnelStyle,
   HarveyBall,
   HarveyBallStyle,
   Input,
@@ -38,6 +40,8 @@ import {
   MetricCardStyle,
   PullQuote,
   PullQuoteStyle,
+  SankeyChart,
+  SankeyStyle,
   SegmentedControl,
   SegmentedControlStyle,
   Select,
@@ -638,6 +642,53 @@ const LAB_SECTIONS: readonly LabSectionSpec[] = [
       />
     ),
   },
+  {
+    number: 25,
+    title: 'FunnelChart — FunnelStyle enum (Tiered / Tapered / Horizontal)',
+    category: 'charts',
+    renderFirm: (brand) => (
+      <FunnelChart
+        brand={brand}
+        style={FunnelStyle.Tiered}
+        height={210}
+        conversionColumnLabel="Conv."
+        formatValue={(v) => `${v}`}
+        stages={[
+          { id: 'f1', label: '$70M+', value: 220, tone: 'neutral' },
+          { id: 'f2', label: '$250M+', value: 60, tone: 'secondary' },
+          { id: 'f3', label: '$500M+', value: 19, tone: 'tertiary' },
+          { id: 'f4', label: '$1B+', value: 7, tone: 'primary' },
+        ]}
+      />
+    ),
+  },
+  {
+    number: 26,
+    title: 'SankeyChart — SankeyStyle enum (Editorial / Flow / Minimal)',
+    category: 'charts',
+    renderFirm: (brand) => (
+      <SankeyChart
+        brand={brand}
+        style={SankeyStyle.Editorial}
+        height={230}
+        formatValue={(v) => `$${v}M`}
+        nodes={[
+          { id: 'run', label: 'Run IT', depth: 0, tone: 'neutral' },
+          { id: 'chg', label: 'Change', depth: 0, tone: 'primary' },
+          { id: 'cld', label: 'Cloud', depth: 1, tone: 'secondary' },
+          { id: 'ai', label: 'Data & AI', depth: 1, tone: 'primary' },
+          { id: 'app', label: 'Apps', depth: 1, tone: 'tertiary' },
+        ]}
+        links={[
+          { source: 'run', target: 'cld', value: 24 },
+          { source: 'run', target: 'app', value: 34 },
+          { source: 'chg', target: 'cld', value: 14 },
+          { source: 'chg', target: 'ai', value: 22 },
+          { source: 'chg', target: 'app', value: 6 },
+        ]}
+      />
+    ),
+  },
 ];
 
 export function TriBrandLab() {
@@ -649,11 +700,17 @@ export function TriBrandLab() {
       ? LAB_SECTIONS
       : LAB_SECTIONS.filter((sec) => sec.category === category);
 
+  const totalCount = LAB_SECTIONS.length;
+  const countByCategory = (cat: Exclude<CategoryFilter, 'all'>) =>
+    LAB_SECTIONS.filter((sec) => sec.category === cat).length;
+
   return (
     <div className={styles.lab}>
       <header className={styles.labHeader}>
         <div className={styles.headerRow}>
-          <h1 className={styles.labTitle}>Tri-Brand Component Lab (24 Components)</h1>
+          <h1 className={styles.labTitle}>
+            Tri-Brand Component Lab ({totalCount} Components)
+          </h1>
           <SegmentedControl
             style={SegmentedControlStyle.Filled}
             size={ControlSize.Sm}
@@ -661,11 +718,11 @@ export function TriBrandLab() {
             value={category}
             onChange={(v) => setCategory(v as CategoryFilter)}
             options={[
-              { value: 'all', label: 'All (24)' },
-              { value: 'charts', label: 'Charts (5)' },
-              { value: 'controls', label: 'Controls (7)' },
-              { value: 'editorial', label: 'Editorial (5)' },
-              { value: 'frameworks', label: 'Frameworks (7)' },
+              { value: 'all', label: `All (${totalCount})` },
+              { value: 'charts', label: `Charts (${countByCategory('charts')})` },
+              { value: 'controls', label: `Controls (${countByCategory('controls')})` },
+              { value: 'editorial', label: `Editorial (${countByCategory('editorial')})` },
+              { value: 'frameworks', label: `Frameworks (${countByCategory('frameworks')})` },
             ]}
           />
         </div>

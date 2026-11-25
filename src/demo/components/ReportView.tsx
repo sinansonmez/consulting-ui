@@ -19,6 +19,8 @@ import {
   DumbbellStyle,
   ExhibitFrame,
   ExhibitStyle,
+  FunnelChart,
+  FunnelStyle,
   HarveyBall,
   HarveyBallStyle,
   Input,
@@ -31,6 +33,8 @@ import {
   MetricCardStyle,
   PullQuote,
   PullQuoteStyle,
+  SankeyChart,
+  SankeyStyle,
   Select,
   SelectStyle,
   StackedBarChart,
@@ -200,7 +204,7 @@ export function ReportView({ onOpenLab, onOpenSimulator }: ReportViewProps) {
         <div className={styles.tagRow}>
           <Badge style={BadgeStyle.Accent}>{brief.practiceTag}</Badge>
           <Badge style={BadgeStyle.Outline}>{brief.releaseTag}</Badge>
-          <Badge style={BadgeStyle.Positive}>24 Components</Badge>
+          <Badge style={BadgeStyle.Positive}>26 Components</Badge>
         </div>
 
         <h1 className={styles.headline}>{brief.headline}</h1>
@@ -211,7 +215,7 @@ export function ReportView({ onOpenLab, onOpenSimulator }: ReportViewProps) {
             Launch interactive simulator
           </Button>
           <Button style={ButtonStyle.Secondary} onClick={onOpenLab}>
-            Compare all 24 side-by-side
+            Compare all 26 side-by-side
           </Button>
           <Button
             style={ButtonStyle.Editorial}
@@ -520,6 +524,88 @@ export function ReportView({ onOpenLab, onOpenSimulator }: ReportViewProps) {
               { id: 'sust', label: 'Sustainability software', value: 7, delta: 1 },
               { id: 'robot', label: 'Automation & robotics', value: 5, delta: -1 },
               { id: 'elec', label: 'Electrical equipment', value: 4, delta: 'New' },
+            ]}
+          />
+        </ExhibitFrame>
+      </section>
+
+      <section className={styles.section}>
+        <ExhibitFrame
+          style={ExhibitStyle.Editorial}
+          exhibitLabel="Exhibit 6 · Scaling Attrition Funnel"
+          title="Only seven independent beauty brands founded in the past two decades have scaled past $1 billion."
+          unitLabel="Number of brands reaching annual retail sales milestone"
+          source="Illustrative 2026 Beauty Scaling Funnel benchmark"
+        >
+          <FunnelChart
+            style={FunnelStyle.Tiered}
+            ariaLabel="Beauty brand scaling milestones funnel"
+            conversionColumnLabel="Of $70M+ cohort"
+            formatValue={(v) => `${v} brands`}
+            stages={[
+              {
+                id: 's70',
+                label: '$70M+ scale-ups',
+                value: 220,
+                note: '89 skincare leaders',
+                tone: 'neutral',
+              },
+              {
+                id: 's250',
+                label: '$250M+ breakout',
+                value: 60,
+                note: 'Multi-category expansion',
+                tone: 'secondary',
+              },
+              {
+                id: 's500',
+                label: '$500M+ regional giants',
+                value: 19,
+                tone: 'tertiary',
+              },
+              {
+                id: 's1b',
+                label: '$1B+ global icons',
+                value: 7,
+                note: '3.2% conversion from $70M',
+                tone: 'primary',
+              },
+            ]}
+          />
+        </ExhibitFrame>
+      </section>
+
+      <section className={styles.section}>
+        <ExhibitFrame
+          style={ExhibitStyle.Card}
+          exhibitLabel="Exhibit 7 · Multi-Stage Budget Flow (Sankey)"
+          title="Deliberate modernizers redirect 42 percent of enterprise IT budgets from legacy run into AI and change."
+          unitLabel="Annualized enterprise IT spend allocation ($M, n = $100M illustrative baseline)"
+          source="Illustrative 2026 Enterprise IT Run-vs-Change budget flow benchmark"
+        >
+          <SankeyChart
+            style={SankeyStyle.Editorial}
+            ariaLabel="Enterprise IT budget flow from Run vs Change into IT towers"
+            formatValue={(v) => `$${v}M`}
+            nodes={[
+              { id: 'run', label: 'Run Legacy', depth: 0, tone: 'neutral' },
+              { id: 'change', label: 'Change & AI', depth: 0, tone: 'primary' },
+              { id: 'cloud', label: 'Cloud & Infra', depth: 1, tone: 'secondary' },
+              { id: 'apps', label: 'Core Apps & ERP', depth: 1, tone: 'quaternary' },
+              { id: 'data', label: 'Data & AI Platforms', depth: 1, tone: 'primary' },
+              { id: 'cyber', label: 'Cyber & Resilience', depth: 1, tone: 'tertiary' },
+              { id: 'work', label: 'Digital Workplace', depth: 1, tone: 'quinary' },
+            ]}
+            links={[
+              { source: 'run', target: 'cloud', value: 20 },
+              { source: 'run', target: 'apps', value: 22 },
+              { source: 'run', target: 'cyber', value: 7 },
+              { source: 'run', target: 'work', value: 9 },
+              { source: 'change', target: 'cloud', value: 11 },
+              { source: 'change', target: 'apps', value: 6 },
+              { source: 'change', target: 'data', value: 19 },
+              { source: 'change', target: 'cyber', value: 4 },
+              { source: 'change', target: 'work', value: 2 },
             ]}
           />
         </ExhibitFrame>

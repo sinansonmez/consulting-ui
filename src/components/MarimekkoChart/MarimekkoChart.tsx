@@ -270,10 +270,7 @@ export function MarimekkoChart({
                 block.segment.tone,
                 block.segIndex,
               );
-              const textColor = getContrastTextColor(
-                fill,
-                chartTheme.textPrimary,
-              );
+              const textColor = getContrastTextColor(fill, chartTheme.inkDark);
 
               const children: Array<Record<string, unknown>> = [
                 {

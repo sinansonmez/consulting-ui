@@ -161,3 +161,15 @@ export enum MarimekkoStyle {
   Compact = 'compact',
   Outlined = 'outlined',
 }
+
+export enum FunnelStyle {
+  Tiered = 'tiered',
+  Tapered = 'tapered',
+  Horizontal = 'horizontal',
+}
+
+export enum SankeyStyle {
+  Editorial = 'editorial',
+  Flow = 'flow',
+  Minimal = 'minimal',
+}

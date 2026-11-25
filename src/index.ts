@@ -28,6 +28,8 @@ export {
   StackedBarStyle,
   DumbbellStyle,
   MarimekkoStyle,
+  FunnelStyle,
+  SankeyStyle,
 } from './theme/enums';
 
 export {
@@ -135,4 +137,15 @@ export {
   type MarimekkoSegment,
   type MarimekkoSelection,
 } from './components/MarimekkoChart/MarimekkoChart';
+export {
+  FunnelChart,
+  type FunnelChartProps,
+  type FunnelStage,
+} from './components/FunnelChart/FunnelChart';
+export {
+  SankeyChart,
+  type SankeyChartProps,
+  type SankeyLink,
+  type SankeyNode,
+} from './components/SankeyChart/SankeyChart';
 export type { ChartSemanticTone } from './charts/chartTheme';

@@ -95,7 +95,7 @@ export function StackedBarChart({
 
       const echartsSeries: BarSeriesOption[] = series.map((spec, sIdx) => {
         const fill = resolveToneColor(chartTheme, spec.tone, sIdx);
-        const contrastText = getContrastTextColor(fill, chartTheme.textPrimary);
+        const contrastText = getContrastTextColor(fill, chartTheme.inkDark);
         const isNegativeStack =
           style === StackedBarStyle.Diverging && spec.polarity === 'negative';
 

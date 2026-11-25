@@ -2,9 +2,13 @@ import * as echarts from 'echarts/core';
 import {
   BarChart as EChartsBarChart,
   CustomChart as EChartsCustomChart,
+  FunnelChart as EChartsFunnelChart,
+  SankeyChart as EChartsSankeyChart,
   ScatterChart as EChartsScatterChart,
   type BarSeriesOption,
   type CustomSeriesOption,
+  type FunnelSeriesOption,
+  type SankeySeriesOption,
   type ScatterSeriesOption,
 } from 'echarts/charts';
 import {
@@ -22,6 +26,8 @@ import { SVGRenderer } from 'echarts/renderers';
 echarts.use([
   EChartsBarChart,
   EChartsCustomChart,
+  EChartsFunnelChart,
+  EChartsSankeyChart,
   EChartsScatterChart,
   GridComponent,
   TooltipComponent,
@@ -33,6 +39,8 @@ echarts.use([
 export type ConsultingChartOption = echarts.ComposeOption<
   | BarSeriesOption
   | CustomSeriesOption
+  | FunnelSeriesOption
+  | SankeySeriesOption
   | ScatterSeriesOption
   | GridComponentOption
   | TooltipComponentOption

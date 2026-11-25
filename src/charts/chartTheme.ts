@@ -17,6 +17,7 @@ export interface ChartTheme {
   fontSans: string;
   barRadius: number;
   background: string;
+  inkDark: string;
   textPrimary: string;
   textSecondary: string;
   textMuted: string;
@@ -46,6 +47,7 @@ const CHART_THEMES: Record<Brand, Record<Surface, ChartTheme>> = {
         "'McKinsey Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       barRadius: 0,
       background: '#ffffff',
+      inkDark: '#051c2c',
       textPrimary: '#051c2c',
       textSecondary: '#22384a',
       textMuted: '#526475',
@@ -72,6 +74,7 @@ const CHART_THEMES: Record<Brand, Record<Surface, ChartTheme>> = {
         "'McKinsey Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       barRadius: 0,
       background: '#051c2c',
+      inkDark: '#051c2c',
       textPrimary: '#f7f9fc',
       textSecondary: '#d4e0ec',
       textMuted: '#8fa6bc',
@@ -100,6 +103,7 @@ const CHART_THEMES: Record<Brand, Record<Surface, ChartTheme>> = {
         "'Henderson BCG Sans', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       barRadius: 4,
       background: '#ffffff',
+      inkDark: '#0e3b2c',
       textPrimary: '#111a16',
       textSecondary: '#2c3e35',
       textMuted: '#52665c',
@@ -126,6 +130,7 @@ const CHART_THEMES: Record<Brand, Record<Surface, ChartTheme>> = {
         "'Henderson BCG Sans', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       barRadius: 4,
       background: '#0b291e',
+      inkDark: '#0b291e',
       textPrimary: '#f3faf6',
       textSecondary: '#cde4d7',
       textMuted: '#8fb4a2',
@@ -154,6 +159,7 @@ const CHART_THEMES: Record<Brand, Record<Surface, ChartTheme>> = {
         "'Graphik', 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       barRadius: 1.5,
       background: '#ffffff',
+      inkDark: '#1c1c1c',
       textPrimary: '#222222',
       textSecondary: '#3d3d3d',
       textMuted: '#626262',
@@ -180,6 +186,7 @@ const CHART_THEMES: Record<Brand, Record<Surface, ChartTheme>> = {
         "'Graphik', 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       barRadius: 1.5,
       background: '#181818',
+      inkDark: '#181818',
       textPrimary: '#f5f5f5',
       textSecondary: '#d4d4d4',
       textMuted: '#a1a1a1',

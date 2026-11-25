@@ -8,13 +8,17 @@ import {
   DumbbellStyle,
   ExhibitFrame,
   ExhibitStyle,
+  FunnelChart,
+  FunnelStyle,
   MarimekkoChart,
   MarimekkoStyle,
+  SankeyChart,
+  SankeyStyle,
   StackedBarChart,
   StackedBarStyle,
 } from '../index';
 
-describe('Wave 1 consulting charts & editorial framing', () => {
+describe('Consulting charts & editorial framing', () => {
   it('ExhibitFrame renders unitLabel, numbered footnotes, and attribution line', () => {
     render(
       <BrandProvider brand={Brand.McKinsey}>
@@ -283,5 +287,116 @@ describe('Wave 1 consulting charts & editorial framing', () => {
     );
 
     expect(screen.getByText('75%')).toBeInTheDocument();
+  });
+
+  it('FunnelChart Tiered renders scaling tiers, conversion rates, and supports Tapered and Horizontal styles', () => {
+    render(
+      <BrandProvider brand={Brand.McKinsey}>
+        <FunnelChart
+          style={FunnelStyle.Tiered}
+          ariaLabel="Beauty brand scaling funnel"
+          formatValue={(v) => `${v} brands`}
+          stages={[
+            { id: 's70', label: '$70M+ scale-ups', value: 220, note: '89 skincare' },
+            { id: 's250', label: '$250M+ breakout', value: 60 },
+            { id: 's1b', label: '$1B+ global icons', value: 7, tone: 'primary' },
+          ]}
+        />
+        <FunnelChart
+          style={FunnelStyle.Tapered}
+          ariaLabel="Enterprise pipeline funnel"
+          stages={[
+            { id: 'pilots', label: 'AI Pilots', value: 100 },
+            { id: 'prod', label: 'Production', value: 38 },
+          ]}
+        />
+        <FunnelChart
+          style={FunnelStyle.Horizontal}
+          ariaLabel="Horizontal conversion funnel"
+          stages={[
+            { id: 'leads', label: 'Qualified', value: 120 },
+            { id: 'won', label: 'Closed Won', value: 30 },
+          ]}
+        />
+      </BrandProvider>,
+    );
+
+    expect(
+      screen.getByRole('img', { name: 'Beauty brand scaling funnel' }),
+    ).toHaveAttribute('data-style', 'tiered');
+    expect(screen.getByText('$70M+ scale-ups')).toBeInTheDocument();
+    expect(screen.getByText('220 brands')).toBeInTheDocument();
+    expect(screen.getByText('60 brands')).toBeInTheDocument();
+    expect(screen.getByText('7 brands')).toBeInTheDocument();
+    // 60 / 220 = 27%, 7 / 220 = 3%
+    expect(screen.getByText('27%')).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('img', { name: 'Enterprise pipeline funnel' }),
+    ).toHaveAttribute('data-style', 'tapered');
+    expect(
+      screen.getByRole('img', { name: 'Horizontal conversion funnel' }),
+    ).toHaveAttribute('data-style', 'horizontal');
+  });
+
+  it('SankeyChart Editorial renders multi-stage budget flow nodes with computed values and shares', () => {
+    render(
+      <BrandProvider brand={Brand.McKinsey}>
+        <SankeyChart
+          style={SankeyStyle.Editorial}
+          ariaLabel="IT budget Run vs Change flow"
+          formatValue={(v) => `$${v}M`}
+          nodes={[
+            { id: 'run', label: 'Run IT', depth: 0, tone: 'neutral' },
+            { id: 'change', label: 'Change & AI', depth: 0, tone: 'primary' },
+            { id: 'cloud', label: 'Cloud & Infra', depth: 1, tone: 'secondary' },
+            { id: 'apps', label: 'Apps & Data', depth: 1, tone: 'primary' },
+          ]}
+          links={[
+            { source: 'run', target: 'cloud', value: 40 },
+            { source: 'run', target: 'apps', value: 20 },
+            { source: 'change', target: 'cloud', value: 10 },
+            { source: 'change', target: 'apps', value: 30 },
+          ]}
+        />
+        <SankeyChart
+          style={SankeyStyle.Flow}
+          ariaLabel="Gradient budget flow"
+          nodes={[
+            { id: 's1', label: 'Budget Pool' },
+            { id: 't1', label: 'AI Platform' },
+          ]}
+          links={[{ source: 's1', target: 't1', value: 80 }]}
+        />
+        <SankeyChart
+          style={SankeyStyle.Minimal}
+          ariaLabel="Minimal flow"
+          showShares={false}
+          nodes={[
+            { id: 'a', label: 'Source A' },
+            { id: 'b', label: 'Target B' },
+          ]}
+          links={[{ source: 'a', target: 'b', value: 50 }]}
+        />
+      </BrandProvider>,
+    );
+
+    const chart = screen.getByRole('img', {
+      name: 'IT budget Run vs Change flow',
+    });
+    expect(chart).toHaveAttribute('data-style', 'editorial');
+    expect(screen.getByText(/Run IT/)).toBeInTheDocument();
+    expect(screen.getByText(/Change & AI/)).toBeInTheDocument();
+    expect(screen.getByText(/Cloud & Infra/)).toBeInTheDocument();
+    expect(screen.getByText(/Apps & Data/)).toBeInTheDocument();
+    expect(screen.getByText(/\$60M/)).toBeInTheDocument();
+    expect(screen.getByText(/60%/)).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('img', { name: 'Gradient budget flow' }),
+    ).toHaveAttribute('data-style', 'flow');
+    expect(
+      screen.getByRole('img', { name: 'Minimal flow' }),
+    ).toHaveAttribute('data-style', 'minimal');
   });
 });
