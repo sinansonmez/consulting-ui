@@ -4,11 +4,11 @@
 [![Live Showcase](https://img.shields.io/badge/Live%20Showcase-GitHub%20Pages-2251FF?style=flat-square)](https://sinansonmez.github.io/consulting-ui/)
 [![React 19](https://img.shields.io/badge/React-19-051C2C?style=flat-square)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-051C2C?style=flat-square)](https://www.typescriptlang.org/)
-[![Zero Runtime Dependencies](https://img.shields.io/badge/Runtime%20Deps-0-CC0000?style=flat-square)](#architecture)
+[![Apache ECharts SVG](https://img.shields.io/badge/Charts-Apache%20ECharts%20SVG-CC0000?style=flat-square)](#complete-24-component-catalog)
 [![npm Provenance](https://img.shields.io/badge/npm-Trusted%20Publishing%20OIDC-147B58?style=flat-square)](#automated-npm-publishing-oidc)
 [![License: MIT](https://img.shields.io/badge/License-MIT-222222?style=flat-square)](./LICENSE)
 
-**`consulting-ui`** is a zero-dependency **React 19 + TypeScript UI & consulting-framework component library (20 components)** engineered for strategy consulting digital reports, executive slide briefings, interactive ROI/maturity simulators, and analytical client dashboards—inspired by the distinctive visual design languages of **McKinsey & Company**, **Boston Consulting Group (BCG)**, and **Bain & Company**.
+**`consulting-ui`** is a **React 19 + TypeScript UI, consulting-framework, and data-visualization component library (24 components)** engineered for strategy consulting digital reports, executive slide briefings, interactive ROI/maturity simulators, and analytical client dashboards—inspired by the distinctive visual design languages of **McKinsey & Company**, **Boston Consulting Group (BCG)**, and **Bain & Company**.
 
 Switch a single `<BrandProvider>` (or override `brand` on any individual component) to transform **color palettes, display/body typography, corner geometry, accent rules, directional CTA motifs, and Light / Executive Dark surfaces** without changing component code.
 
@@ -22,16 +22,16 @@ Switch a single `<BrandProvider>` (or override `brand` on any individual compone
 npm install consulting-ui
 ```
 
-> **Peer dependencies:** `react >= 19` and `react-dom >= 19`. Zero external runtime dependencies.
+> **Peer dependencies:** `react >= 19` and `react-dom >= 19`. Uses modular tree-shaken `echarts/core` (`SVGRenderer`) for publication-grade vector consulting charts.
 
 ---
 
 ## Why `consulting-ui`?
 
-- **Three Distinct Consulting Design Languages — Not Just Color Swaps:** Switching between `Brand.McKinsey`, `Brand.BCG`, and `Brand.Bain` changes structural geometry (`0px` sharp corners vs. `9999px` pill controls vs. `2px` financial precision), typographic pairings, chevron shapes, callout architecture, and button arrow motifs.
-- **Native Strategy Consulting Visuals & Frameworks:** Ships first-class pure-SVG consulting staples you won't find in generic SaaS kits—`WaterfallChart` (auto-computed EBITDA bridges), `Matrix2x2` (interactive 4-quadrant frameworks), `HarveyBall` (`0–100%` qualitative comparison circles), `ChevronFlow` (phased transformation roadmaps), and `BenchmarkBar` (median + top-quartile bullet gauges).
-- **Strict TypeScript `enum` `style` API:** Every component exposes a small, brand-safe interface using classic TypeScript `enum`s (`ButtonStyle.Primary`, `WaterfallStyle.Classic`, `MatrixStyle.Quadrant`, etc.) and intentionally omits raw inline `CSSProperties` and arbitrary `className` overrides so teams stay on-brand.
-- **Zero External Runtime Dependencies:** Only `react` and `react-dom` peer dependencies. Styles compile into one zero-runtime CSS stylesheet (`consulting-ui/styles.css`) powered by CSS Custom Properties (`[data-brand]` × `[data-surface]`).
+- **Three Distinct Consulting Design Languages — Not Just Color Swaps:** Switching between `Brand.McKinsey`, `Brand.BCG`, and `Brand.Bain` changes structural geometry (`0px` sharp corners vs. `9999px` pill controls vs. `2px` financial precision), curated 6-step chart color ramps, typographic pairings, chevron shapes, callout architecture, and button arrow motifs.
+- **Publication-Grade Consulting Charts & Frameworks:** Ships first-class consulting exhibits powered by modular Apache ECharts SVG rendering—`WaterfallChart` (EBITDA value bridges), `BarChart` (ranked + delta column, grouped, diverging), `StackedBarChart` (100% proportional, absolute, diverging), `DumbbellChart` (cohort gap & range dot plots), and `MarimekkoChart` (proportional-width composition with automatic sliver arrow callouts & serif hero totals)—alongside `Matrix2x2`, `HarveyBall`, `ChevronFlow`, and `BenchmarkBar`.
+- **Strict TypeScript `enum` `style` API:** Every component exposes a small, brand-safe interface using classic TypeScript `enum`s (`ButtonStyle.Primary`, `WaterfallStyle.Classic`, `MarimekkoStyle.Editorial`, etc.) and intentionally omits raw inline `CSSProperties` and arbitrary `className` overrides so teams stay on-brand.
+- **Zero-Runtime CSS Custom Properties:** All styles compile into one stylesheet (`consulting-ui/styles.css`) powered by `[data-brand]` × `[data-surface]` tokens, paired with `ResizeObserver`-driven responsive SVG charts.
 - **Accessible by Default:** Custom brand-styled ARIA `listbox` in `<Select>`, WAI-ARIA roving keyboard focus in `<Tabs>` and `<SegmentedControl>`, portal `dialog` focus management in `<Drawer>`, `aria-sort` + `tabular-nums` in `<DataTable>`, visible focus rings, and `prefers-reduced-motion` support.
 
 ---
@@ -113,7 +113,17 @@ export function ValueCreationBrief() {
 
 ---
 
-## Complete 20-Component Catalog
+## Complete 24-Component Catalog
+
+### Publication-Grade Consulting Charts (5 · Apache ECharts SVG)
+
+| # | Component | `style` Enum Variants | Key Capabilities |
+| :-: | :--- | :--- | :--- |
+| 12 | **`WaterfallChart`** | `WaterfallStyle`: `Classic` · `Clean` · `Compact` | Declarative `steps` bridge auto-computing cumulative bases, `+`/`-` deltas, subtotals, totals, dashed connectors & executive hover tooltips |
+| 21 | **`BarChart`** | `BarChartStyle`: `Ranked` · `Grouped` · `Diverging` | Ranked horizontal bars with selective highlight + right-hand delta column, multi-cohort paired bars, and centered zero-axis diverging shifts |
+| 22 | **`StackedBarChart`** | `StackedBarStyle`: `Proportional` · `Absolute` · `Diverging` | 100% normalized stacked composition with contrast-aware direct labels, raw totals, and Likert diverging sentiment splits |
+| 23 | **`DumbbellChart`** | `DumbbellStyle`: `Gap` · `Range` · `Minimal` | Two-cohort dot-and-bridge plots supporting negative-to-positive zero axes, optional median benchmarks, and right-hand gap callout columns |
+| 24 | **`MarimekkoChart`** | `MarimekkoStyle`: `Editorial` · `Compact` · `Outlined` | Proportional-width stacked composition with 3-tier automatic labeling (dual-corner, inline, and collision-free sliver arrow callouts) + display serif hero totals |
 
 ### Interactive Controls (7)
 
@@ -137,15 +147,14 @@ export function ValueCreationBrief() {
 | 17 | **`InsightCard`** | `InsightCardStyle`: `Editorial` · `Bordered` · `Featured` | Publication / PDF report teaser card with router-agnostic `href` link or `onAction` trigger |
 | 20 | **`Drawer`** | `DrawerStyle`: `Standard` · `AccentHeader` · `Floating` | Accessible slide-over `dialog` (`Escape`/backdrop close, scroll lock, focus restore) + `inline` preview mode |
 
-### Consulting Frameworks & Data Exhibits (8)
+### Consulting Frameworks & Data Exhibits (7)
 
 | # | Component | `style` Enum Variants | Key Capabilities |
 | :-: | :--- | :--- | :--- |
 | 7 | **`MetricCard`** | `MetricCardStyle`: `Hero` · `Compact` · `Split` | Oversized `tabular-nums` KPI display, trend delta badge, benchmark comparison, and source line |
-| 8 | **`ExhibitFrame`** | `ExhibitStyle`: `Editorial` · `Card` · `AccentHeader` | Numbered consulting exhibit wrapper (`Exhibit N`, action title, `controls` slot, `Note`, and `Source`) |
+| 8 | **`ExhibitFrame`** | `ExhibitStyle`: `Editorial` · `Card` · `AccentHeader` | Numbered consulting exhibit wrapper (`Exhibit N`, action title, `unitLabel`, `controls` slot, numbered `footnotes`, `Note`, `Source`, and `attribution`) |
 | 9 | **`DataTable`** | `DataTableStyle`: `Editorial` · `Zebra` · `Compact` | Declarative `columns` + `rows` + pinned `summaryRow`, highlighted target rows, numeric-aware sorting (`aria-sort`) |
 | 11 | **`HarveyBall`** | `HarveyBallStyle`: `Solid` · `Ring` · `Minimal` | Discrete `0 | 25 | 50 | 75 | 100` qualitative capability ideogram for matrices and comparison tables |
-| 12 | **`WaterfallChart`** | `WaterfallStyle`: `Classic` · `Clean` · `Compact` | Declarative `steps` bridge auto-computing cumulative bases, `+`/`-` deltas, subtotals, totals & step connectors |
 | 13 | **`Matrix2x2`** | `MatrixStyle`: `Quadrant` · `Minimal` · `Card` | 4-quadrant strategic grid with `0–100` coordinates and keyboard-selectable plotted points |
 | 14 | **`ChevronFlow`** | `ChevronFlowStyle`: `Interlocking` · `Cards` · `Minimal` | Sequential transformation roadmap (sharp interlocking chevrons on McKinsey/Bain, capsules on BCG) |
 | 15 | **`BenchmarkBar`** | `BenchmarkBarStyle`: `Bullet` · `Split` · `Minimal` | Quartile progress gauge displaying current value against sector median tick and top-quartile zone |
@@ -172,7 +181,7 @@ npm install
 # Run 3-view interactive Showcase locally
 npm run dev
 
-# Run Vitest + Testing Library suite across all 20 components
+# Run Vitest + Testing Library suite across all 24 components
 npm test
 
 # Typecheck, lint, and build library + GitHub Pages showcase

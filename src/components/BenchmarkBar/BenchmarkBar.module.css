@@ -53,15 +53,14 @@
 .fillPrimary {
   position: relative;
   height: 100%;
-  background-color: var(--mbb-accent);
+  background-color: var(--mbb-chart-1);
   border-radius: var(--mbb-radius-badge);
   transition: width var(--mbb-transition-med);
 }
 
 .fillLeader {
   height: 100%;
-  background-color: var(--mbb-border-strong);
-  opacity: 0.55;
+  background-color: var(--mbb-chart-neutral);
   border-radius: var(--mbb-radius-badge);
   transition: width var(--mbb-transition-med);
 }

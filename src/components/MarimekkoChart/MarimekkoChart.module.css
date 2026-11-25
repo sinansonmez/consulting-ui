@@ -1,0 +1,124 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--mbb-font-sans);
+  color: var(--mbb-text-primary);
+}
+
+.editorialGrid {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.leftGutter {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 0.35rem;
+  min-width: 6.5rem;
+}
+
+.totalInline {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.totalLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--mbb-text-secondary);
+}
+
+.heroFigure {
+  font-family: var(--mbb-font-display);
+  font-size: clamp(1.65rem, 2.6vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--mbb-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.canvasShell {
+  position: relative;
+  min-width: 0;
+}
+
+.highlightCallout {
+  position: absolute;
+  top: 0.15rem;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  pointer-events: none;
+  text-align: right;
+}
+
+.highlightLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--mbb-text-secondary);
+}
+
+.columnHeaders {
+  display: flex;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  gap: 2px;
+}
+
+.columnHeaderPill {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.3rem 0.55rem;
+  background-color: var(--mbb-bg-surface);
+  border-bottom: 2px solid var(--mbb-border-strong);
+  font-size: 0.78rem;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.columnHeaderLabel {
+  font-weight: 600;
+  color: var(--mbb-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.columnHeaderShare {
+  font-weight: 700;
+  color: var(--mbb-accent);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+@media (max-width: 680px) {
+  .editorialGrid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .leftGutter {
+    min-width: 0;
+    padding-bottom: 0;
+    order: 2;
+  }
+
+  .highlightCallout {
+    position: static;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+}

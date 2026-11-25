@@ -85,7 +85,7 @@ export function App() {
               items={[
                 { id: 'report', label: 'Interactive 2026 Strategy Report' },
                 { id: 'simulator', label: 'Diagnostic & Frameworks Simulator' },
-                { id: 'lab', label: 'Tri-Brand Side-by-Side Lab', count: 20 },
+                { id: 'lab', label: 'Tri-Brand Side-by-Side Lab', count: 24 },
               ]}
             />
           </div>
@@ -107,7 +107,7 @@ export function App() {
         <footer className={styles.footer}>
           <div className={styles.footerInner}>
             <p className={styles.disclaimer}>
-              <strong>consulting-ui</strong> is an independent, open-source React 19 + TypeScript design-system library (20 components). It is not affiliated with, sponsored by, or endorsed by McKinsey &amp; Company, Boston Consulting Group, or Bain &amp; Company. All metrics shown are illustrative benchmark datasets.
+              <strong>consulting-ui</strong> is an independent, open-source React 19 + TypeScript design-system library (24 components). It is not affiliated with, sponsored by, or endorsed by McKinsey &amp; Company, Boston Consulting Group, or Bain &amp; Company. All metrics shown are illustrative benchmark datasets.
             </p>
             <div className={styles.footerLinks}>
               <a
@@ -124,7 +124,7 @@ export function App() {
               >
                 npm Package
               </a>
-              <span>MIT License · Zero Runtime Dependencies · OIDC Provenance</span>
+              <span>MIT License · Apache ECharts SVG Engine · OIDC Provenance</span>
             </div>
           </div>
         </footer>

@@ -24,6 +24,10 @@ export {
   SliderStyle,
   SegmentedControlStyle,
   DrawerStyle,
+  BarChartStyle,
+  StackedBarStyle,
+  DumbbellStyle,
+  MarimekkoStyle,
 } from './theme/enums';
 
 export {
@@ -104,3 +108,31 @@ export {
   type SegmentedOption,
 } from './components/SegmentedControl/SegmentedControl';
 export { Drawer, type DrawerProps } from './components/Drawer/Drawer';
+export {
+  BarChart,
+  type BarChartProps,
+  type BarDatum,
+  type BarReferenceLine,
+  type BarSeriesSpec,
+} from './components/BarChart/BarChart';
+export {
+  StackedBarChart,
+  type StackedBarCategory,
+  type StackedBarChartProps,
+  type StackedBarSegmentSpec,
+  type StackedBarSelection,
+} from './components/StackedBarChart/StackedBarChart';
+export {
+  DumbbellChart,
+  type DumbbellChartProps,
+  type DumbbellDatum,
+} from './components/DumbbellChart/DumbbellChart';
+export {
+  MarimekkoChart,
+  type MarimekkoChartProps,
+  type MarimekkoColumn,
+  type MarimekkoHeroCallout,
+  type MarimekkoSegment,
+  type MarimekkoSelection,
+} from './components/MarimekkoChart/MarimekkoChart';
+export type { ChartSemanticTone } from './charts/chartTheme';

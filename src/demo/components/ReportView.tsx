@@ -4,6 +4,8 @@ import {
   AccordionStyle,
   Badge,
   BadgeStyle,
+  BarChart,
+  BarChartStyle,
   Button,
   ButtonStyle,
   Callout,
@@ -13,6 +15,8 @@ import {
   DataTableStyle,
   Drawer,
   DrawerStyle,
+  DumbbellChart,
+  DumbbellStyle,
   ExhibitFrame,
   ExhibitStyle,
   HarveyBall,
@@ -21,12 +25,16 @@ import {
   InputStyle,
   InsightCard,
   InsightCardStyle,
+  MarimekkoChart,
+  MarimekkoStyle,
   MetricCard,
   MetricCardStyle,
   PullQuote,
   PullQuoteStyle,
   Select,
   SelectStyle,
+  StackedBarChart,
+  StackedBarStyle,
   Tabs,
   TabsStyle,
   WaterfallChart,
@@ -42,7 +50,6 @@ import {
   type RegionKey,
   type SectorMetricRow,
 } from '../data/reports';
-import { ExhibitChart } from './ExhibitChart';
 import styles from './ReportView.module.css';
 
 export interface ReportViewProps {
@@ -193,7 +200,7 @@ export function ReportView({ onOpenLab, onOpenSimulator }: ReportViewProps) {
         <div className={styles.tagRow}>
           <Badge style={BadgeStyle.Accent}>{brief.practiceTag}</Badge>
           <Badge style={BadgeStyle.Outline}>{brief.releaseTag}</Badge>
-          <Badge style={BadgeStyle.Positive}>20 Components</Badge>
+          <Badge style={BadgeStyle.Positive}>24 Components</Badge>
         </div>
 
         <h1 className={styles.headline}>{brief.headline}</h1>
@@ -204,7 +211,7 @@ export function ReportView({ onOpenLab, onOpenSimulator }: ReportViewProps) {
             Launch interactive simulator
           </Button>
           <Button style={ButtonStyle.Secondary} onClick={onOpenLab}>
-            Compare all 20 side-by-side
+            Compare all 24 side-by-side
           </Button>
           <Button
             style={ButtonStyle.Editorial}
@@ -303,7 +310,22 @@ export function ReportView({ onOpenLab, onOpenSimulator }: ReportViewProps) {
           }
         >
           {exhibitTab === 'chart' ? (
-            <ExhibitChart data={bars} />
+            <BarChart
+              style={BarChartStyle.Grouped}
+              ariaLabel="Leaders versus sector median benchmark chart"
+              deltaColumnLabel="Spread"
+              formatValue={(v) => `${v}%`}
+              series={[
+                { id: 'leaders', label: 'Top-quartile leaders (%)', tone: 'primary' },
+                { id: 'median', label: 'Sector median (%)', tone: 'neutral' },
+              ]}
+              data={bars.map((b) => ({
+                id: b.label,
+                label: b.label,
+                values: [b.leaders, b.median],
+                delta: `+${b.leaders - b.median} pp`,
+              }))}
+            />
           ) : exhibitTab === 'bridge' ? (
             <WaterfallChart
               style={WaterfallStyle.Classic}
@@ -358,6 +380,148 @@ export function ReportView({ onOpenLab, onOpenSimulator }: ReportViewProps) {
               />
             </div>
           )}
+        </ExhibitFrame>
+      </section>
+
+      {/* Editorial Chart Suite Showcase (Wave 1) */}
+      <section className={styles.section}>
+        <ExhibitFrame
+          style={ExhibitStyle.Editorial}
+          exhibitLabel="Exhibit 2 · Marimekko Composition"
+          title="Priority sectors accounted for roughly 40 percent of US construction spend in 2025."
+          unitLabel="2025 US construction spend, %"
+          footnotes={[
+            'Includes electric power generation component of NAICS 2211 (Electric Power Generation, Transmission and Distribution).',
+          ]}
+          source="Illustrative construction capital-expenditure benchmark modeled on Annual Capital Expenditures Survey & EIA"
+          attribution={`${brief.shortName} · Illustrative Exhibit`}
+        >
+          <MarimekkoChart
+            style={MarimekkoStyle.Editorial}
+            ariaLabel="2025 US construction spend composition by sector"
+            totalCallout={{ label: 'Total', value: '100%' }}
+            highlightCallout={{
+              label: 'Priority sectors total',
+              value: '41.4%',
+            }}
+            formatValue={(v) => v.toFixed(1)}
+            columns={[
+              {
+                id: 'other',
+                label: 'All other construction',
+                segments: [
+                  {
+                    id: 'other-all',
+                    label: 'All other construction',
+                    value: 58.6,
+                    tone: 'neutral',
+                  },
+                ],
+              },
+              {
+                id: 'priority',
+                label: 'Priority sectors',
+                segments: [
+                  { id: 'mfg', label: 'Manufacturing', value: 15.2, tone: 'primary' },
+                  { id: 'mining', label: 'Mining', value: 0.9, tone: 'primary' },
+                  { id: 'trans', label: 'Transportation', value: 9.9, tone: 'primary' },
+                  { id: 'bb', label: 'Broadband and telecom', value: 4.7, tone: 'primary' },
+                  { id: 'pipe', label: 'Oil and gas pipelines', value: 0.9, tone: 'secondary' },
+                  { id: 'extract', label: 'Oil and gas extraction', value: 5.2, tone: 'secondary' },
+                  { id: 'tx', label: 'Electricity transmission', value: 1.7, tone: 'secondary' },
+                  {
+                    id: 'gen',
+                    label: 'Electricity generation',
+                    value: 2.9,
+                    tone: 'secondary',
+                    footnoteRef: '1',
+                  },
+                ],
+              },
+            ]}
+          />
+        </ExhibitFrame>
+      </section>
+
+      <section className={styles.section}>
+        <ExhibitFrame
+          style={ExhibitStyle.Card}
+          exhibitLabel="Exhibit 3 · 100% Stacked Composition"
+          title="Reported AI headcount reductions trailed prior-year executive forecasts by more than half."
+          unitLabel="Share of surveyed enterprises reporting or expecting workforce impact, %"
+          footnotes={[
+            'Responses normalized excluding "don’t know" answers across global enterprise survey waves.',
+          ]}
+          source="Illustrative 2026 State of AI workforce survey synthesis"
+        >
+          <StackedBarChart
+            style={StackedBarStyle.Proportional}
+            ariaLabel="AI workforce impact forecast versus actuals"
+            series={[
+              { id: 'dec', label: 'Decrease (>3%)', tone: 'primary' },
+              { id: 'same', label: 'Little or no change', tone: 'neutral' },
+              { id: 'inc', label: 'Increase (>3%)', tone: 'secondary' },
+            ]}
+            categories={[
+              { id: 'prior', label: 'Prior-year expectation', values: [32, 50, 18] },
+              { id: 'actual', label: 'Actual reported impact', values: [14, 66, 20] },
+              { id: 'next', label: 'Next-12-month forecast', values: [39, 43, 18] },
+            ]}
+          />
+        </ExhibitFrame>
+      </section>
+
+      <section className={styles.section}>
+        <ExhibitFrame
+          style={ExhibitStyle.Editorial}
+          exhibitLabel="Exhibit 4 · Cohort Gap Dumbbell"
+          title="Despite heavy adoption, younger consumers remain skeptical of social and AI research channels."
+          unitLabel="Net trust score for product research channels (positive minus negative), index points"
+          source="Illustrative 2026 Consumer Trust & Discovery benchmark"
+        >
+          <DumbbellChart
+            style={DumbbellStyle.Gap}
+            ariaLabel="Net consumer trust by generation"
+            startLabel="Baby Boomers"
+            endLabel="Gen Z"
+            deltaColumnLabel="Gen Z vs. Boomers"
+            formatValue={(v) => `${v > 0 ? '+' : ''}${v}`}
+            formatDelta={(d) => `${d > 0 ? '+' : ''}${d} pp`}
+            data={[
+              { id: 'friends', label: 'Friends & family', start: 64, end: 56 },
+              { id: 'reviews', label: 'Verified customer reviews', start: 42, end: 31 },
+              { id: 'brand', label: 'Brand websites', start: 28, end: 18 },
+              { id: 'genai', label: 'Generative AI assistants', start: -24, end: 8 },
+              { id: 'social', label: 'Social media influencers', start: -38, end: -14 },
+            ]}
+          />
+        </ExhibitFrame>
+      </section>
+
+      <section className={styles.section}>
+        <ExhibitFrame
+          style={ExhibitStyle.Card}
+          exhibitLabel="Exhibit 5 · Ranked Horizontal Bar + Delta Column"
+          title="Digital agronomy and precision hardware lead field adoption while remote sensing accelerates fastest."
+          unitLabel="Global farmers currently using technology, % of respondents"
+          source="Illustrative 2026 Global AgTech Adoption benchmark (n = 5,500)"
+        >
+          <BarChart
+            style={BarChartStyle.Ranked}
+            ariaLabel="Global agriculture technology adoption and two-year change"
+            deltaColumnLabel="2024–26"
+            formatValue={(v) => `${v}%`}
+            formatDelta={(d) => `${d > 0 ? '+' : ''}${d} pp`}
+            data={[
+              { id: 'agro', label: 'Digital agronomy', value: 31, delta: 1, highlighted: true },
+              { id: 'hw', label: 'Precision ag hardware', value: 27, delta: 3, highlighted: true },
+              { id: 'sense', label: 'Remote sensing', value: 24, delta: 5, highlighted: true },
+              { id: 'fms', label: 'Farm management software', value: 24, delta: 3 },
+              { id: 'sust', label: 'Sustainability software', value: 7, delta: 1 },
+              { id: 'robot', label: 'Automation & robotics', value: 5, delta: -1 },
+              { id: 'elec', label: 'Electrical equipment', value: 4, delta: 'New' },
+            ]}
+          />
         </ExhibitFrame>
       </section>
 

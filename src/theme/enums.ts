@@ -137,3 +137,27 @@ export enum DrawerStyle {
   AccentHeader = 'accent-header',
   Floating = 'floating',
 }
+
+export enum BarChartStyle {
+  Ranked = 'ranked',
+  Grouped = 'grouped',
+  Diverging = 'diverging',
+}
+
+export enum StackedBarStyle {
+  Proportional = 'proportional',
+  Absolute = 'absolute',
+  Diverging = 'diverging',
+}
+
+export enum DumbbellStyle {
+  Gap = 'gap',
+  Range = 'range',
+  Minimal = 'minimal',
+}
+
+export enum MarimekkoStyle {
+  Editorial = 'editorial',
+  Compact = 'compact',
+  Outlined = 'outlined',
+}

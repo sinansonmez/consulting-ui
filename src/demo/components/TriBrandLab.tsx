@@ -4,6 +4,8 @@ import {
   AccordionStyle,
   Badge,
   BadgeStyle,
+  BarChart,
+  BarChartStyle,
   BenchmarkBar,
   BenchmarkBarStyle,
   Brand,
@@ -18,6 +20,8 @@ import {
   DataTableStyle,
   Drawer,
   DrawerStyle,
+  DumbbellChart,
+  DumbbellStyle,
   ExhibitFrame,
   ExhibitStyle,
   HarveyBall,
@@ -26,6 +30,8 @@ import {
   InputStyle,
   InsightCard,
   InsightCardStyle,
+  MarimekkoChart,
+  MarimekkoStyle,
   Matrix2x2,
   MatrixStyle,
   MetricCard,
@@ -38,6 +44,8 @@ import {
   SelectStyle,
   Slider,
   SliderStyle,
+  StackedBarChart,
+  StackedBarStyle,
   Tabs,
   TabsStyle,
   WaterfallChart,
@@ -48,7 +56,7 @@ import {
 } from '../../index';
 import styles from './TriBrandLab.module.css';
 
-type CategoryFilter = 'all' | 'controls' | 'editorial' | 'frameworks';
+type CategoryFilter = 'all' | 'charts' | 'controls' | 'editorial' | 'frameworks';
 
 interface MiniRow extends DataTableRow {
   region: string;
@@ -355,8 +363,8 @@ const LAB_SECTIONS: readonly LabSectionSpec[] = [
   },
   {
     number: 12,
-    title: 'WaterfallChart — WaterfallStyle enum',
-    category: 'frameworks',
+    title: 'WaterfallChart — WaterfallStyle enum (ECharts)',
+    category: 'charts',
     renderFirm: (brand) => (
       <WaterfallChart
         brand={brand}
@@ -533,6 +541,103 @@ const LAB_SECTIONS: readonly LabSectionSpec[] = [
       </Drawer>
     ),
   },
+  {
+    number: 21,
+    title: 'BarChart — BarChartStyle enum (Ranked / Grouped / Diverging)',
+    category: 'charts',
+    renderFirm: (brand) => (
+      <BarChart
+        brand={brand}
+        style={BarChartStyle.Ranked}
+        height={210}
+        deltaColumnLabel="YoY"
+        formatValue={(v) => `${v}%`}
+        formatDelta={(d) => `${d > 0 ? '+' : ''}${d} pp`}
+        data={[
+          { id: 'b1', label: 'Agronomy', value: 31, delta: 2, highlighted: true },
+          { id: 'b2', label: 'Precision HW', value: 27, delta: 3, highlighted: true },
+          { id: 'b3', label: 'Sensing', value: 24, delta: 5 },
+          { id: 'b4', label: 'Robotics', value: 5, delta: -1 },
+        ]}
+      />
+    ),
+  },
+  {
+    number: 22,
+    title: 'StackedBarChart — StackedBarStyle enum (100% / Absolute / Diverging)',
+    category: 'charts',
+    renderFirm: (brand) => (
+      <StackedBarChart
+        brand={brand}
+        style={StackedBarStyle.Proportional}
+        height={210}
+        series={[
+          { id: 's1', label: 'Decrease', tone: 'primary' },
+          { id: 's2', label: 'No change', tone: 'neutral' },
+          { id: 's3', label: 'Increase', tone: 'secondary' },
+        ]}
+        categories={[
+          { id: 'c1', label: 'Forecast', values: [32, 50, 18] },
+          { id: 'c2', label: 'Actual', values: [14, 66, 20] },
+          { id: 'c3', label: 'Next yr', values: [39, 43, 18] },
+        ]}
+      />
+    ),
+  },
+  {
+    number: 23,
+    title: 'DumbbellChart — DumbbellStyle enum (Gap / Range / Minimal)',
+    category: 'charts',
+    renderFirm: (brand) => (
+      <DumbbellChart
+        brand={brand}
+        style={DumbbellStyle.Gap}
+        height={220}
+        startLabel="Boomers"
+        endLabel="Gen Z"
+        deltaColumnLabel="Gap"
+        formatValue={(v) => `${v > 0 ? '+' : ''}${v}`}
+        formatDelta={(d) => `${d > 0 ? '+' : ''}${d}`}
+        data={[
+          { id: 'd1', label: 'Peers', start: 64, end: 56 },
+          { id: 'd2', label: 'Gen AI', start: -24, end: 8 },
+          { id: 'd3', label: 'Social', start: -38, end: -14 },
+        ]}
+      />
+    ),
+  },
+  {
+    number: 24,
+    title: 'MarimekkoChart — MarimekkoStyle enum (Editorial / Compact / Outlined)',
+    category: 'charts',
+    renderFirm: (brand) => (
+      <MarimekkoChart
+        brand={brand}
+        style={MarimekkoStyle.Compact}
+        height={220}
+        formatValue={(v) => v.toFixed(1)}
+        columns={[
+          {
+            id: 'other',
+            label: 'Other',
+            segments: [
+              { id: 'o1', label: 'All other', value: 58.6, tone: 'neutral' },
+            ],
+          },
+          {
+            id: 'priority',
+            label: 'Priority',
+            segments: [
+              { id: 'p1', label: 'Manufacturing', value: 15.2, tone: 'primary' },
+              { id: 'p2', label: 'Transport', value: 10.8, tone: 'primary' },
+              { id: 'p3', label: 'Broadband', value: 4.7, tone: 'primary' },
+              { id: 'p4', label: 'Energy', value: 10.7, tone: 'secondary' },
+            ],
+          },
+        ]}
+      />
+    ),
+  },
 ];
 
 export function TriBrandLab() {
@@ -548,7 +653,7 @@ export function TriBrandLab() {
     <div className={styles.lab}>
       <header className={styles.labHeader}>
         <div className={styles.headerRow}>
-          <h1 className={styles.labTitle}>Tri-Brand Component Lab (20 Components)</h1>
+          <h1 className={styles.labTitle}>Tri-Brand Component Lab (24 Components)</h1>
           <SegmentedControl
             style={SegmentedControlStyle.Filled}
             size={ControlSize.Sm}
@@ -556,10 +661,11 @@ export function TriBrandLab() {
             value={category}
             onChange={(v) => setCategory(v as CategoryFilter)}
             options={[
-              { value: 'all', label: 'All (20)' },
+              { value: 'all', label: 'All (24)' },
+              { value: 'charts', label: 'Charts (5)' },
               { value: 'controls', label: 'Controls (7)' },
               { value: 'editorial', label: 'Editorial (5)' },
-              { value: 'frameworks', label: 'Frameworks (8)' },
+              { value: 'frameworks', label: 'Frameworks (7)' },
             ]}
           />
         </div>

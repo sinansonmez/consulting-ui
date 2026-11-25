@@ -11,9 +11,12 @@ export interface ExhibitFrameProps {
   surface?: Surface;
   exhibitLabel?: string;
   subtitle?: string;
+  unitLabel?: string;
   controls?: ReactNode;
   note?: string;
+  footnotes?: readonly string[];
   source?: string;
+  attribution?: string;
 }
 
 export function ExhibitFrame({
@@ -24,11 +27,17 @@ export function ExhibitFrame({
   surface,
   exhibitLabel,
   subtitle,
+  unitLabel,
   controls,
   note,
+  footnotes,
   source,
+  attribution,
 }: ExhibitFrameProps) {
   const theme = useResolvedTheme(brand, surface);
+  const hasFooter = Boolean(
+    note || source || attribution || (footnotes && footnotes.length > 0),
+  );
 
   return (
     <figure
@@ -48,10 +57,22 @@ export function ExhibitFrame({
         {controls && <div className={styles.controls}>{controls}</div>}
       </div>
 
+      {unitLabel && <p className={styles.unitLabel}>{unitLabel}</p>}
+
       <div className={styles.canvas}>{children}</div>
 
-      {(note || source) && (
+      {hasFooter && (
         <div className={styles.footer}>
+          {footnotes && footnotes.length > 0 && (
+            <ol className={styles.footnotes}>
+              {footnotes.map((item, idx) => (
+                <li key={`${idx}-${item}`} className={styles.footnoteItem}>
+                  <sup className={styles.footnoteNum}>{idx + 1}</sup>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ol>
+          )}
           {note && (
             <p className={styles.footerLine}>
               <span className={styles.footerKey}>Note:</span> {note}
@@ -61,6 +82,9 @@ export function ExhibitFrame({
             <p className={styles.footerLine}>
               <span className={styles.footerKey}>Source:</span> {source}
             </p>
+          )}
+          {attribution && (
+            <p className={styles.attribution}>{attribution}</p>
           )}
         </div>
       )}

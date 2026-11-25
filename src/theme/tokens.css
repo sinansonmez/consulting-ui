@@ -68,6 +68,17 @@
   --mbb-border: #d0d7de;
   --mbb-border-strong: #051c2c;
   --mbb-focus-ring: #2251ff;
+
+  --mbb-chart-1: #2251ff;
+  --mbb-chart-2: #061f79;
+  --mbb-chart-3: #00a9f4;
+  --mbb-chart-4: #051c2c;
+  --mbb-chart-5: #6e8497;
+  --mbb-chart-neutral: #b3b3b3;
+  --mbb-chart-muted: #dce2e8;
+  --mbb-chart-grid: #e4e9ef;
+  --mbb-chart-callout: #051c2c;
+  --mbb-chart-divider: #ffffff;
 }
 
 [data-brand='mckinsey'][data-surface='dark'] {
@@ -88,6 +99,17 @@
   --mbb-border: rgba(255, 255, 255, 0.16);
   --mbb-border-strong: rgba(255, 255, 255, 0.72);
   --mbb-focus-ring: #74a0ff;
+
+  --mbb-chart-1: #4c76ff;
+  --mbb-chart-2: #00b4ff;
+  --mbb-chart-3: #8cb0ff;
+  --mbb-chart-4: #244a9a;
+  --mbb-chart-5: #8fa6bc;
+  --mbb-chart-neutral: #50667b;
+  --mbb-chart-muted: #1b3b57;
+  --mbb-chart-grid: rgba(255, 255, 255, 0.14);
+  --mbb-chart-callout: #f7f9fc;
+  --mbb-chart-divider: #051c2c;
 }
 
 /* ----------------------------------------------------------------------------
@@ -123,6 +145,17 @@
   --mbb-border: #d2e0d8;
   --mbb-border-strong: #147b58;
   --mbb-focus-ring: #29ba74;
+
+  --mbb-chart-1: #147b58;
+  --mbb-chart-2: #0e3b2c;
+  --mbb-chart-3: #29ba74;
+  --mbb-chart-4: #5a967e;
+  --mbb-chart-5: #88b9a5;
+  --mbb-chart-neutral: #becbc4;
+  --mbb-chart-muted: #e3eee8;
+  --mbb-chart-grid: #dfeae4;
+  --mbb-chart-callout: #0e3b2c;
+  --mbb-chart-divider: #ffffff;
 }
 
 [data-brand='bcg'][data-surface='dark'] {
@@ -143,6 +176,17 @@
   --mbb-border: rgba(255, 255, 255, 0.16);
   --mbb-border-strong: #29ba74;
   --mbb-focus-ring: #5de09e;
+
+  --mbb-chart-1: #29ba74;
+  --mbb-chart-2: #6ce3a5;
+  --mbb-chart-3: #1a8a5e;
+  --mbb-chart-4: #9cecc2;
+  --mbb-chart-5: #78a590;
+  --mbb-chart-neutral: #3d5d4e;
+  --mbb-chart-muted: #164030;
+  --mbb-chart-grid: rgba(255, 255, 255, 0.14);
+  --mbb-chart-callout: #f3faf6;
+  --mbb-chart-divider: #0b291e;
 }
 
 /* ----------------------------------------------------------------------------
@@ -178,6 +222,17 @@
   --mbb-border: #d9d9d9;
   --mbb-border-strong: #222222;
   --mbb-focus-ring: #cc0000;
+
+  --mbb-chart-1: #cc0000;
+  --mbb-chart-2: #222222;
+  --mbb-chart-3: #7f1d1d;
+  --mbb-chart-4: #5c5c5c;
+  --mbb-chart-5: #8e8e8e;
+  --mbb-chart-neutral: #c2c2c2;
+  --mbb-chart-muted: #eaeaea;
+  --mbb-chart-grid: #e5e5e5;
+  --mbb-chart-callout: #222222;
+  --mbb-chart-divider: #ffffff;
 }
 
 [data-brand='bain'][data-surface='dark'] {
@@ -198,6 +253,17 @@
   --mbb-border: rgba(255, 255, 255, 0.16);
   --mbb-border-strong: rgba(255, 255, 255, 0.72);
   --mbb-focus-ring: #ff5454;
+
+  --mbb-chart-1: #e62020;
+  --mbb-chart-2: #f5f5f5;
+  --mbb-chart-3: #ff7070;
+  --mbb-chart-4: #999999;
+  --mbb-chart-5: #666666;
+  --mbb-chart-neutral: #4f4f4f;
+  --mbb-chart-muted: #2c2c2c;
+  --mbb-chart-grid: rgba(255, 255, 255, 0.14);
+  --mbb-chart-callout: #f5f5f5;
+  --mbb-chart-divider: #181818;
 }
 
 .mbb-provider-root {

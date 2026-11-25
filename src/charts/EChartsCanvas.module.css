@@ -1,14 +1,16 @@
 .root {
   width: 100%;
-  overflow-x: auto;
+  min-width: 0;
+  position: relative;
   font-family: var(--mbb-font-sans);
   font-variant-numeric: tabular-nums;
 }
 
-.svg {
+.canvas {
   width: 100%;
-  height: auto;
-  min-width: 30rem;
+  min-width: 0;
+}
+
+.canvas svg {
   display: block;
-  font-family: var(--mbb-font-sans);
 }
