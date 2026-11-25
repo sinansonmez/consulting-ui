@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { ECElementEvent } from 'echarts/core';
 import { Brand, Surface } from '../theme/enums';
 import {
-  echarts,
+  initConsultingChart,
   type ConsultingChartOption,
   type EChartsInstance,
 } from './echartsCore';
@@ -73,7 +73,7 @@ export function EChartsCanvas({
     const measuredWidth = el.clientWidth;
     const measuredHeight = el.clientHeight;
 
-    const chart = echarts.init(el, undefined, {
+    const chart = initConsultingChart(el, {
       renderer: 'svg',
       width: measuredWidth > 0 ? undefined : fallbackWidthRef.current,
       height: measuredHeight > 0 ? undefined : heightRef.current,

@@ -23,18 +23,29 @@ import {
 } from 'echarts/components';
 import { SVGRenderer } from 'echarts/renderers';
 
-echarts.use([
-  EChartsBarChart,
-  EChartsCustomChart,
-  EChartsFunnelChart,
-  EChartsSankeyChart,
-  EChartsScatterChart,
-  GridComponent,
-  TooltipComponent,
-  LegendComponent,
-  MarkLineComponent,
-  SVGRenderer,
-]);
+let registered = false;
+
+export function initConsultingChart(
+  dom: HTMLElement,
+  opts: Parameters<typeof echarts.init>[2],
+): echarts.ECharts {
+  if (!registered) {
+    echarts.use([
+      EChartsBarChart,
+      EChartsCustomChart,
+      EChartsFunnelChart,
+      EChartsSankeyChart,
+      EChartsScatterChart,
+      GridComponent,
+      TooltipComponent,
+      LegendComponent,
+      MarkLineComponent,
+      SVGRenderer,
+    ]);
+    registered = true;
+  }
+  return echarts.init(dom, undefined, opts);
+}
 
 export type ConsultingChartOption = echarts.ComposeOption<
   | BarSeriesOption
@@ -49,5 +60,3 @@ export type ConsultingChartOption = echarts.ComposeOption<
 >;
 
 export type EChartsInstance = echarts.ECharts;
-
-export { echarts };
